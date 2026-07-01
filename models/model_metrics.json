@@ -1,0 +1,26 @@
+{
+    "model_name": "DecisionTreeRegressor",
+    "target": "salary_in_usd",
+    "features": [
+        "work_year",
+        "experience_level",
+        "employment_type",
+        "job_title",
+        "employee_residence",
+        "remote_ratio",
+        "company_location",
+        "company_size"
+    ],
+    "best_params": {
+        "model__max_depth": 7,
+        "model__max_features": null,
+        "model__min_samples_leaf": 2,
+        "model__min_samples_split": 5
+    },
+    "mae": 32331.409475064236,
+    "rmse": 52882.318774747226,
+    "r2": 0.4178561947561016,
+    "baseline_mae": 50958.95575221239,
+    "baseline_rmse": 69822.64785502428,
+    "baseline_r2": -0.014850171759041242
+}

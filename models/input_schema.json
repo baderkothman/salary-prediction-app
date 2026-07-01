@@ -1,0 +1,28 @@
+{
+    "work_year": "integer",
+    "experience_level": [
+        "Entry-level",
+        "Mid-level",
+        "Senior-level",
+        "Executive-level"
+    ],
+    "employment_type": [
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Freelance"
+    ],
+    "job_title": "string",
+    "employee_residence": "string",
+    "remote_ratio": [
+        0,
+        50,
+        100
+    ],
+    "company_location": "string",
+    "company_size": [
+        "Small",
+        "Medium",
+        "Large"
+    ]
+}
