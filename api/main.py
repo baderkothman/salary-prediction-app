@@ -3,13 +3,14 @@ from pathlib import Path
 
 import joblib
 import pandas as pd
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from api.validation import validate_allowed_value
 from api.charts import generate_salary_comparison_chart
 from api.llm_analysis import generate_llm_salary_analysis
+from api.supabase_service import save_prediction_result, get_prediction_history
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -141,6 +142,7 @@ def root():
             "/options",
             "/predict",
             "/analyze",
+            "/history",
         ],
     }
 
@@ -161,7 +163,7 @@ def get_options():
 
 @app.get("/predict")
 def predict_salary(
-    work_year: int = Query(..., description="Work year, for example 2024"),
+    work_year: int = Query(..., description="Work year, for example 2022"),
     experience_level: str = Query(..., min_length=2, description="Experience level"),
     employment_type: str = Query(..., min_length=2, description="Employment type"),
     job_title: str = Query(..., min_length=2, max_length=100, description="Job title"),
@@ -209,7 +211,7 @@ def predict_salary(
 
 @app.get("/analyze")
 def analyze_salary(
-    work_year: int = Query(..., description="Work year, for example 2024"),
+    work_year: int = Query(..., description="Work year, for example 2022"),
     experience_level: str = Query(..., min_length=2, description="Experience level"),
     employment_type: str = Query(..., min_length=2, description="Employment type"),
     job_title: str = Query(..., min_length=2, max_length=100, description="Job title"),
@@ -263,6 +265,14 @@ def analyze_salary(
         dataset_insights=dataset_insights,
     )
 
+    save_result = save_prediction_result(
+        input_data=input_data,
+        predicted_salary=predicted_salary,
+        dataset_insights=dataset_insights,
+        llm_analysis=llm_analysis,
+        chart_url=chart_url,
+    )
+
     return {
         "prediction": {"salary_in_usd": predicted_salary},
         "input": input_data,
@@ -273,4 +283,35 @@ def analyze_salary(
             "title": "Predicted Salary Compared with Average Salary by Experience Level",
             "chart_url": chart_url,
         },
+        "storage": {
+            "saved_to_supabase": save_result["saved"],
+            "error": save_result["error"],
+            "record": save_result["data"],
+        },
+    }
+
+
+@app.get("/history")
+def prediction_history(
+    limit: int = Query(
+        20,
+        ge=1,
+        le=100,
+        description="Number of recent predictions to return",
+    )
+):
+    result = get_prediction_history(limit=limit)
+
+    if not result["success"]:
+        raise HTTPException(
+            status_code=500,
+            detail={
+                "error": "Failed to fetch prediction history",
+                "message": result["error"],
+            },
+        )
+
+    return {
+        "count": len(result["data"]),
+        "data": result["data"],
     }

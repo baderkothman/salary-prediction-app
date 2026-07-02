@@ -1,0 +1,4 @@
+.env
+.venv/
+api/__pycache__/
+api/__pycache__/main.cpython-314.pyc
