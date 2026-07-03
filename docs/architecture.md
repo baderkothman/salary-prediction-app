@@ -29,14 +29,14 @@ flowchart LR
 
 | Component                | Location                           | Responsibility                                                                                          |
 | ------------------------ | ---------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| FastAPI app              | `api/main.py`                      | Defines routes, loads model/data, validates inputs, runs predictions, creates analysis responses.       |
-| Validation helper        | `api/validation.py`                | Rejects query parameter values not present in `api/allowed_values.json`.                                |
-| Chart generator          | `api/charts.py`                    | Builds matplotlib salary comparison PNGs in `static/charts/`.                                           |
-| LLM analysis             | `api/llm_analysis.py`              | Sends prompt context to local Ollama `llama3.2` and returns narrative text or a graceful error message. |
-| Supabase service         | `api/supabase_service.py`          | Creates Supabase client, inserts analysis rows, and fetches recent history.                             |
-| Next.js dashboard        | `dashboard/src/app/page.tsx`       | Renders dashboard UI, filters history, runs simulations, displays chart and analysis details.           |
-| Frontend data client     | `dashboard/src/lib/predictions.ts` | Calls FastAPI for options/analysis and Supabase for history.                                            |
-| Frontend Supabase client | `dashboard/src/lib/supabase.ts`    | Initializes browser Supabase client from public environment variables.                                  |
+| FastAPI app              | `backend/api/main.py`                      | Defines routes, loads model/data, validates inputs, runs predictions, creates analysis responses.       |
+| Validation helper        | `backend/api/validation.py`                | Rejects query parameter values not present in `backend/api/allowed_values.json`.                                |
+| Chart generator          | `backend/api/charts.py`                    | Builds matplotlib salary comparison PNGs in `backend/static/charts/`.                                           |
+| LLM analysis             | `backend/api/llm_analysis.py`              | Sends prompt context to local Ollama `llama3.2` and returns narrative text or a graceful error message. |
+| Supabase service         | `backend/api/supabase_service.py`          | Creates Supabase client, inserts analysis rows, and fetches recent history.                             |
+| Next.js dashboard        | `frontend/src/app/page.tsx`       | Renders dashboard UI, filters history, runs simulations, displays chart and analysis details.           |
+| Frontend data client     | `frontend/src/lib/predictions.ts` | Calls FastAPI for options/analysis and Supabase for history.                                            |
+| Frontend Supabase client | `frontend/src/lib/supabase.ts`    | Initializes browser Supabase client from public environment variables.                                  |
 
 ## Request Flow
 
@@ -82,15 +82,15 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    Raw[data/raw/ds_salaries.csv] --> Cleaning[notebooks/01_data_cleaning.ipynb]
-    Cleaning --> Cleaned[data/processed/cleaned_salaries.csv]
+    Raw[backend/data/raw/ds_salaries.csv] --> Cleaning[notebooks/01_data_cleaning.ipynb]
+    Cleaning --> Cleaned[backend/data/processed/cleaned_salaries.csv]
     Cleaned --> Training[notebooks/02_model_training.ipynb]
-    Training --> Model[models/salary_decision_tree_pipeline.joblib]
-    Training --> Metrics[models/model_metrics.json]
-    Training --> Schema[models/input_schema.json]
-    Training --> Importance[data/processed/feature_importance.csv]
-    Cleaned --> Allowed[api/allowed_values.json]
-    Model --> API[api/main.py]
+    Training --> Model[backend/models/salary_decision_tree_pipeline.joblib]
+    Training --> Metrics[backend/models/model_metrics.json]
+    Training --> Schema[backend/models/input_schema.json]
+    Training --> Importance[backend/data/processed/feature_importance.csv]
+    Cleaned --> Allowed[backend/api/allowed_values.json]
+    Model --> API[backend/api/main.py]
     Cleaned --> API
     Allowed --> API
 ```
@@ -99,27 +99,27 @@ flowchart TD
 
 | Path                                          | Purpose                                                                |
 | --------------------------------------------- | ---------------------------------------------------------------------- |
-| `api/main.py`                                 | API application entrypoint and route definitions.                      |
-| `api/allowed_values.json`                     | Valid values for request validation, derived from the cleaned dataset. |
-| `api/create_allowed_values.py`                | Regenerates `allowed_values.json` from `cleaned_salaries.csv`.         |
-| `api/validation.py`                           | Shared input validation helper.                                        |
-| `api/charts.py`                               | Creates salary comparison charts.                                      |
-| `api/llm_analysis.py`                         | Local Ollama prompt and response handling.                             |
-| `api/supabase_service.py`                     | Supabase connection, insert, and history query logic.                  |
-| `dashboard/src/app/page.tsx`                  | Main interactive dashboard screen.                                     |
-| `dashboard/src/lib/predictions.ts`            | Frontend API and Supabase data functions.                              |
-| `dashboard/src/lib/supabase.ts`               | Supabase browser client configuration.                                 |
-| `dashboard/src/types/prediction.ts`           | TypeScript shape of saved prediction rows.                             |
-| `data/raw/ds_salaries.csv`                    | Original salary dataset.                                               |
-| `data/processed/cleaned_salaries.csv`         | Cleaned model-ready dataset.                                           |
-| `data/processed/feature_importance.csv`       | Feature importance report from trained decision tree.                  |
-| `models/salary_decision_tree_pipeline.joblib` | Saved preprocessing and regression pipeline.                           |
-| `models/model_metrics.json`                   | Model metrics and selected hyperparameters.                            |
-| `models/input_schema.json`                    | Expected model input schema.                                           |
+| `backend/api/main.py`                                 | API application entrypoint and route definitions.                      |
+| `backend/api/allowed_values.json`                     | Valid values for request validation, derived from the cleaned dataset. |
+| `backend/api/create_allowed_values.py`                | Regenerates `allowed_values.json` from `cleaned_salaries.csv`.         |
+| `backend/api/validation.py`                           | Shared input validation helper.                                        |
+| `backend/api/charts.py`                               | Creates salary comparison charts.                                      |
+| `backend/api/llm_analysis.py`                         | Local Ollama prompt and response handling.                             |
+| `backend/api/supabase_service.py`                     | Supabase connection, insert, and history query logic.                  |
+| `frontend/src/app/page.tsx`                  | Main interactive dashboard screen.                                     |
+| `frontend/src/lib/predictions.ts`            | Frontend API and Supabase data functions.                              |
+| `frontend/src/lib/supabase.ts`               | Supabase browser client configuration.                                 |
+| `frontend/src/types/prediction.ts`           | TypeScript shape of saved prediction rows.                             |
+| `backend/data/raw/ds_salaries.csv`                    | Original salary dataset.                                               |
+| `backend/data/processed/cleaned_salaries.csv`         | Cleaned model-ready dataset.                                           |
+| `backend/data/processed/feature_importance.csv`       | Feature importance report from trained decision tree.                  |
+| `backend/models/salary_decision_tree_pipeline.joblib` | Saved preprocessing and regression pipeline.                           |
+| `backend/models/model_metrics.json`                   | Model metrics and selected hyperparameters.                            |
+| `backend/models/input_schema.json`                    | Expected model input schema.                                           |
 | `notebooks/01_data_cleaning.ipynb`            | Raw-to-cleaned data preparation notebook.                              |
 | `notebooks/02_model_training.ipynb`           | Training, tuning, evaluation, and artifact export notebook.            |
 | `scripts/test_prediction_api.py`              | API validation and prediction test script.                             |
-| `static/charts/`                              | Generated PNG chart files returned by `/analyze`.                      |
+| `backend/static/charts/`                              | Generated PNG chart files returned by `/analyze`.                      |
 
 ## Architecture Decisions
 
@@ -134,3 +134,5 @@ flowchart TD
 - No database migrations exist; database structure is inferred from application code.
 - The API and dashboard are separate deployable services.
 - The dashboard reads history directly from Supabase instead of calling the backend `/history` endpoint.
+
+

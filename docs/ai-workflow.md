@@ -13,8 +13,8 @@ The project does not implement RAG, embeddings, vector search, agents, tool-call
 
 | File                                  | Rows | Purpose                                                   |
 | ------------------------------------- | ---: | --------------------------------------------------------- |
-| `data/raw/ds_salaries.csv`            |  607 | Original salary dataset.                                  |
-| `data/processed/cleaned_salaries.csv` |  565 | Cleaned dataset used by training and API benchmark logic. |
+| `backend/data/raw/ds_salaries.csv`            |  607 | Original salary dataset.                                  |
+| `backend/data/processed/cleaned_salaries.csv` |  565 | Cleaned dataset used by training and API benchmark logic. |
 
 Raw columns include compact category codes such as `MI`, `SE`, `FT`, and `M`. The cleaning notebook expands these into readable labels.
 
@@ -24,7 +24,7 @@ Implemented in `notebooks/01_data_cleaning.ipynb`.
 
 Main steps:
 
-1. Load `data/raw/ds_salaries.csv`.
+1. Load `backend/data/raw/ds_salaries.csv`.
 2. Standardize column names.
 3. Remove missing values.
 4. Remove duplicate rows.
@@ -36,7 +36,7 @@ Main steps:
 7. Coerce numeric fields.
 8. Remove invalid non-positive salary rows.
 9. Add readable `work_setting` from `remote_ratio`.
-10. Save `data/processed/cleaned_salaries.csv`.
+10. Save `backend/data/processed/cleaned_salaries.csv`.
 
 ## Model Training Workflow
 
@@ -111,7 +111,7 @@ Search space:
 
 ## Evaluation Metrics
 
-From `models/model_metrics.json`:
+From `backend/models/model_metrics.json`:
 
 | Metric | Tuned Model | Median Baseline |
 | ------ | ----------: | --------------: |
@@ -123,7 +123,7 @@ The model outperforms the simple median-salary baseline, but its R2 indicates mo
 
 ## Feature Importance
 
-Feature importance is saved in `data/processed/feature_importance.csv`. The highest-impact feature in the current artifact is `employee_residence_US`, followed by experience-level and work-year related features.
+Feature importance is saved in `backend/data/processed/feature_importance.csv`. The highest-impact feature in the current artifact is `employee_residence_US`, followed by experience-level and work-year related features.
 
 Because this is a one-hot encoded decision tree, importances are assigned to encoded feature columns rather than only to original business fields.
 
@@ -141,7 +141,7 @@ flowchart TD
 
 ## Dataset Insights
 
-The `/analyze` endpoint calculates benchmark averages from `data/processed/cleaned_salaries.csv`:
+The `/analyze` endpoint calculates benchmark averages from `backend/data/processed/cleaned_salaries.csv`:
 
 - Overall average salary.
 - Average salary for the selected experience level.
@@ -152,10 +152,10 @@ If a filtered group has no rows, the API falls back to the overall average.
 
 ## Chart Generation
 
-`api/charts.py` groups the cleaned dataset by `experience_level`, calculates average salary, and creates a bar chart. It overlays the predicted salary as a horizontal dashed line and saves a PNG under:
+`backend/api/charts.py` groups the cleaned dataset by `experience_level`, calculates average salary, and creates a bar chart. It overlays the predicted salary as a horizontal dashed line and saves a PNG under:
 
 ```text
-static/charts/
+backend/static/charts/
 ```
 
 The API returns a relative chart URL such as:
@@ -166,7 +166,7 @@ The API returns a relative chart URL such as:
 
 ## LLM Analysis
 
-Implemented in `api/llm_analysis.py`.
+Implemented in `backend/api/llm_analysis.py`.
 
 The app sends a prompt to:
 
@@ -210,3 +210,5 @@ If Ollama is unavailable, times out, or returns an error, `/analyze` still retur
 - The notebooks do not document the original public source or license of `ds_salaries.csv`.
 - No model card, fairness evaluation, subgroup error analysis, or drift monitoring report is included.
 - No retraining automation or scheduled data refresh exists.
+
+

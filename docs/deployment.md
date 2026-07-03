@@ -28,29 +28,29 @@ flowchart LR
 
 The backend deployment must include:
 
-- `api/`
-- `models/salary_decision_tree_pipeline.joblib`
-- `data/processed/cleaned_salaries.csv`
-- `api/allowed_values.json`
-- `requirements.txt`
-- Writable storage for `static/charts/`, or an alternative object-storage implementation.
+- `backend/api/`
+- `backend/models/salary_decision_tree_pipeline.joblib`
+- `backend/data/processed/cleaned_salaries.csv`
+- `backend/api/allowed_values.json`
+- `backend/requirements.txt`
+- Writable storage for `backend/static/charts/`, or an alternative object-storage implementation.
 
 Install command:
 
 ```bash
-pip install -r requirements.txt
+pip install -r backend/requirements.txt
 ```
 
 Start command:
 
 ```bash
-uvicorn api.main:app --host 0.0.0.0 --port $PORT
+uvicorn backend.api.main:app --host 0.0.0.0 --port $PORT
 ```
 
 If the platform does not provide `PORT`, use:
 
 ```bash
-uvicorn api.main:app --host 0.0.0.0 --port 8000
+uvicorn backend.api.main:app --host 0.0.0.0 --port 8000
 ```
 
 ## Backend Environment Variables
@@ -62,7 +62,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 ## Dashboard Deployment Requirements
 
-Deploy the `dashboard/` directory as a Next.js app.
+Deploy the `frontend/` directory as a Next.js app.
 
 Build command:
 
@@ -100,7 +100,7 @@ Minimum expected capabilities:
 The backend currently writes PNG files to local disk under:
 
 ```text
-static/charts/
+backend/static/charts/
 ```
 
 This works in local development. In production, verify whether the hosting platform provides persistent writable disk.
@@ -178,3 +178,5 @@ https://your-api-domain.example.com/health
 - No deployment platform is specified.
 - No Dockerfile, container configuration, Procfile, CI workflow, or platform-specific config file exists.
 - The current local chart storage design may not work on stateless hosting.
+
+

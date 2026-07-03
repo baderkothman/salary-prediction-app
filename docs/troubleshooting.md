@@ -4,16 +4,16 @@
 
 ### Symptom
 
-`uvicorn api.main:app --reload` fails on startup.
+`uvicorn backend.api.main:app --reload` fails on startup.
 
 ### Common Causes and Fixes
 
 | Cause                             | Fix                                                           |
 | --------------------------------- | ------------------------------------------------------------- |
-| Python dependencies missing       | Run `pip install -r requirements.txt`.                        |
+| Python dependencies missing       | Run `pip install -r backend\requirements.txt`.                        |
 | Virtual environment not activated | Run `.\.venv\Scripts\Activate.ps1` on Windows PowerShell.     |
-| Model artifact missing            | Confirm `models/salary_decision_tree_pipeline.joblib` exists. |
-| Cleaned dataset missing           | Confirm `data/processed/cleaned_salaries.csv` exists.         |
+| Model artifact missing            | Confirm `backend/models/salary_decision_tree_pipeline.joblib` exists. |
+| Cleaned dataset missing           | Confirm `backend/data/processed/cleaned_salaries.csv` exists.         |
 | Invalid working directory         | Run commands from repository root.                            |
 
 ## `/health` Shows Model or Dataset Not Loaded
@@ -42,7 +42,7 @@ If this fails, verify the model and dataset files exist and are readable.
 
 ### Cause
 
-One or more query parameters are missing, have the wrong type, or are not included in `api/allowed_values.json`.
+One or more query parameters are missing, have the wrong type, or are not included in `backend/api/allowed_values.json`.
 
 ### Fix
 
@@ -108,7 +108,7 @@ Also confirm the `salary_predictions` table exists and contains a `created_at` c
 
 ### Cause
 
-`api/llm_analysis.py` could not connect to:
+`backend/api/llm_analysis.py` could not connect to:
 
 ```text
 http://localhost:11434/api/generate
@@ -154,7 +154,7 @@ Missing NEXT_PUBLIC_SUPABASE_ANON_KEY
 
 ### Fix
 
-Create `dashboard/.env.local`:
+Create `frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
@@ -175,7 +175,7 @@ The FastAPI backend is not running, or `NEXT_PUBLIC_API_BASE_URL` points to the 
 1. Start the backend:
 
 ```powershell
-uvicorn api.main:app --reload
+uvicorn backend.api.main:app --reload
 ```
 
 2. Confirm:
@@ -184,7 +184,7 @@ uvicorn api.main:app --reload
 http://127.0.0.1:8000/options
 ```
 
-3. Check `dashboard/.env.local`:
+3. Check `frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
@@ -223,7 +223,7 @@ NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000
 Also confirm the file exists under:
 
 ```text
-static/charts/
+backend/static/charts/
 ```
 
 ## API Test Script Fails with Connection Error
@@ -241,8 +241,8 @@ http://127.0.0.1:8000
 Start FastAPI before running the script:
 
 ```powershell
-uvicorn api.main:app --reload
-python scripts\test_prediction_api.py
+uvicorn backend.api.main:app --reload
+python backend\scripts\test_prediction_api.py
 ```
 
 ## `npm run build` Fails
@@ -256,7 +256,7 @@ python scripts\test_prediction_api.py
 ### Fix
 
 ```powershell
-cd dashboard
+cd frontend
 npm install
 npm run lint
 npm run build
@@ -269,3 +269,5 @@ Review the first error in the build output.
 - No CI logs or production logs are included.
 - No centralized application logging is implemented.
 - No health endpoint exists for Supabase or Ollama dependencies beyond indirect endpoint behavior.
+
+

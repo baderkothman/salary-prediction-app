@@ -1,7 +1,0 @@
-@layer theme, base, mui, components, utilities;
-@import "tailwindcss";
-
-body {
-  margin: 0;
-  background: #f8fafc;
-}

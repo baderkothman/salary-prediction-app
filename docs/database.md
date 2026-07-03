@@ -4,8 +4,8 @@
 
 The project uses Supabase Postgres to store saved salary analysis records. Database access appears in two places:
 
-- Backend insert and history query: `api/supabase_service.py`
-- Frontend direct history query: `dashboard/src/lib/predictions.ts`
+- Backend insert and history query: `backend/api/supabase_service.py`
+- Frontend direct history query: `frontend/src/lib/predictions.ts`
 
 The repository does not include database migrations or SQL schema files. The schema below is inferred from application code.
 
@@ -70,7 +70,7 @@ create table if not exists public.salary_predictions (
 
 ### Insert Analysis Result
 
-Implemented in `api/supabase_service.py`.
+Implemented in `backend/api/supabase_service.py`.
 
 ```python
 supabase.table("salary_predictions").insert(row).execute()
@@ -86,7 +86,7 @@ The inserted row includes:
 
 ### Fetch Recent History
 
-Implemented in `api/supabase_service.py`.
+Implemented in `backend/api/supabase_service.py`.
 
 ```python
 (
@@ -100,7 +100,7 @@ Implemented in `api/supabase_service.py`.
 
 ### Frontend History Query
 
-Implemented in `dashboard/src/lib/predictions.ts`.
+Implemented in `frontend/src/lib/predictions.ts`.
 
 ```typescript
 supabase
@@ -171,3 +171,5 @@ on public.salary_predictions (created_at desc);
 - No official SQL migration exists in the repo.
 - Existing Supabase RLS policies are not visible in source code.
 - The exact database column types are inferred, not verified from a live Supabase schema.
+
+

@@ -1,5 +1,15 @@
 .env
 .venv/
-api/__pycache__/
-api/__pycache__/main.cpython-314.pyc
+__pycache__/
+*.py[cod]
+
+backend/.env
+backend/**/__pycache__/
+
+frontend/.env.local
+frontend/.next/
+frontend/node_modules/
+
 docs/business-presentation-summary.md
+docs/business-demo-plan.md
+stitch-assets/

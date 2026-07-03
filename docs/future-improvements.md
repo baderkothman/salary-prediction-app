@@ -10,7 +10,7 @@
 | Add rate limiting                             | Prevents excessive chart generation, database writes, and Ollama load.     |
 | Move Ollama settings to environment variables | Avoids hardcoded local-only configuration.                                 |
 | Add `.env.example` files                      | Makes setup clearer without exposing secrets.                              |
-| Ignore dashboard secrets/build output         | Add `dashboard/.env.local`, `.next/`, and `node_modules/` to ignore rules. |
+| Ignore dashboard secrets/build output         | Add `frontend/.env.local`, `.next/`, and `node_modules/` to ignore rules. |
 
 ## AI and Model Improvements
 
@@ -88,3 +88,5 @@
 - The desired production platform is not specified.
 - The intended privacy model for prediction history is not specified.
 - The project owner has not specified whether salary history should be public, private, or user-specific.
+
+

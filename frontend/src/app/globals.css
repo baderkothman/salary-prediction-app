@@ -1,0 +1,180 @@
+@layer theme, base, mui, components, utilities;
+@import "tailwindcss";
+
+:root {
+  --sl-background: #f7f9fb;
+  --sl-surface: #f7f9fb;
+  --sl-panel: #ffffff;
+  --sl-panel-low: #f2f4f6;
+  --sl-panel-mid: #eceef0;
+  --sl-panel-high: #e6e8ea;
+  --sl-border: #c6c6cd;
+  --sl-border-strong: #76777d;
+  --sl-text: #191c1e;
+  --sl-muted: #45464d;
+  --sl-secondary-container: #d5e3fd;
+  --sl-secondary-text: #57657b;
+  --sl-navy: #001a42;
+  --sl-blue: #3980f4;
+  --sl-black: #000000;
+  --sl-error: #ba1a1a;
+  --sl-radius: 8px;
+  --sl-radius-sm: 4px;
+  --sl-shadow: 0 1px 2px rgba(13, 28, 47, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--sl-background);
+  color: var(--sl-text);
+  font-family: var(--font-inter), Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.sl-label {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.sl-label-md {
+  font-family: var(--font-jetbrains-mono), monospace;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.salarylens-shell {
+  min-height: 100vh;
+  background: var(--sl-background);
+}
+
+.salarylens-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  z-index: 40;
+  width: 256px;
+  background: var(--sl-panel);
+  border-right: 1px solid var(--sl-border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 8px 16px;
+}
+
+.salarylens-main {
+  min-height: 100vh;
+  margin-left: 256px;
+  display: flex;
+  flex-direction: column;
+}
+
+.salarylens-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 40px;
+  background: var(--sl-surface);
+  border-bottom: 1px solid var(--sl-border);
+}
+
+.salarylens-content {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.salarylens-footer {
+  margin-top: auto;
+  border-top: 1px solid var(--sl-border);
+  color: var(--sl-muted);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 40px;
+}
+
+.salarylens-mobile-nav {
+  display: none;
+}
+
+.typewriter-text::after {
+  content: "|";
+  animation: sl-blink 0.75s step-end infinite;
+}
+
+@keyframes sl-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--sl-border);
+  border-radius: 10px;
+}
+
+@media (max-width: 899px) {
+  .salarylens-sidebar {
+    display: none;
+  }
+
+  .salarylens-main {
+    margin-left: 0;
+    padding-bottom: 76px;
+  }
+
+  .salarylens-topbar {
+    height: 64px;
+    padding: 0 16px;
+  }
+
+  .salarylens-content {
+    padding: 16px;
+  }
+
+  .salarylens-footer {
+    display: none;
+  }
+
+  .salarylens-mobile-nav {
+    position: fixed;
+    inset: auto 0 0 0;
+    z-index: 50;
+    height: 64px;
+    background: var(--sl-panel);
+    border-top: 1px solid var(--sl-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+}

@@ -40,19 +40,21 @@ Salary expectations vary by job title, experience level, geography, company size
 
 ```text
 salary-prediction-app/
-+-- api/                         # FastAPI app, validation, chart, LLM, and Supabase logic
-+-- dashboard/                   # Next.js dashboard application
-+-- data/
-|   +-- raw/                     # Original dataset
-|   +-- processed/               # Cleaned dataset and feature importance report
++-- backend/                     # Python backend, ML artifacts, notebooks, and generated reports
+|   +-- api/                     # FastAPI app, validation, chart, LLM, and Supabase logic
+|   +-- data/
+|   |   +-- raw/                 # Original dataset
+|   |   +-- processed/           # Cleaned dataset and feature importance report
+|   +-- models/                  # Saved model pipeline, metrics, and input schema
+|   +-- notebooks/               # Data cleaning and model training notebooks
+|   +-- reports/                 # API test reports
+|   +-- scripts/                 # Utility and API test scripts
+|   +-- static/charts/           # Generated chart PNG files
+|   +-- requirements.txt         # Python dependencies
+|   +-- .env                     # Backend environment variables, not committed
++-- frontend/                    # Next.js dashboard application
 +-- docs/                        # Project documentation
-+-- models/                      # Saved model pipeline, metrics, and input schema
-+-- notebooks/                   # Data cleaning and model training notebooks
-+-- reports/                     # API test reports
-+-- scripts/                     # Utility and API test scripts
-+-- static/charts/               # Generated chart PNG files
-+-- requirements.txt             # Python dependencies
-+-- .env                         # Backend environment variables, not committed
++-- stitch-assets/               # Downloaded Stitch reference HTML and screenshots
 ```
 
 ## Documentation Index
@@ -74,8 +76,8 @@ salary-prediction-app/
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-uvicorn api.main:app --reload
+pip install -r backend\requirements.txt
+uvicorn backend.api.main:app --reload
 ```
 
 Backend URL:
@@ -108,7 +110,7 @@ http://localhost:11434/api/generate
 ### 3. Frontend Dashboard
 
 ```powershell
-cd dashboard
+cd frontend
 npm install
 npm run dev
 ```
@@ -121,14 +123,14 @@ http://localhost:3000
 
 ## Environment Variables
 
-Backend `.env`:
+Backend `backend/.env`:
 
 ```env
 SUPABASE_URL=your_supabase_project_url
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 ```
 
-Dashboard `dashboard/.env.local`:
+Frontend `frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
@@ -175,19 +177,19 @@ Invoke-RestMethod "http://127.0.0.1:8000/predict?work_year=2022&experience_level
 Run the API first, then execute:
 
 ```powershell
-python scripts\test_prediction_api.py
+python backend\scripts\test_prediction_api.py
 ```
 
 The script calls `/options`, generates valid and invalid `/predict` test cases, and writes results to:
 
 ```text
-reports/api_prediction_test_results.csv
+backend/reports/api_prediction_test_results.csv
 ```
 
 For the dashboard:
 
 ```powershell
-cd dashboard
+cd frontend
 npm run lint
 npm run build
 ```
@@ -198,4 +200,4 @@ npm run build
 - No production deployment files such as Dockerfile, Compose file, Procfile, Vercel config, or CI workflow are included.
 - The API currently has no authentication layer and allows all CORS origins.
 - The project does not implement RAG, embeddings, vector databases, agents, or external hosted LLM APIs.
-- The local Ollama URL and model name are hardcoded in `api/llm_analysis.py`.
+- The local Ollama URL and model name are hardcoded in `backend/api/llm_analysis.py`.

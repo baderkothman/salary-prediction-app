@@ -15,10 +15,10 @@ From the repository root:
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+pip install -r backend\requirements.txt
 ```
 
-Create `.env` in the repository root:
+Create `backend/.env`:
 
 ```env
 SUPABASE_URL=your_supabase_project_url
@@ -28,7 +28,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 Start the API:
 
 ```powershell
-uvicorn api.main:app --reload
+uvicorn backend.api.main:app --reload
 ```
 
 Open:
@@ -39,14 +39,14 @@ http://127.0.0.1:8000/docs
 
 ## Frontend Setup
 
-From the dashboard folder:
+From the frontend folder:
 
 ```powershell
-cd dashboard
+cd frontend
 npm install
 ```
 
-Create `dashboard/.env.local`:
+Create `frontend/.env.local`:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
@@ -83,11 +83,11 @@ If these values are missing, `/analyze` still predicts salary but reports that s
 | ------------------------------- | ------------------------ | -------------------------------------------------------------------------------------------- |
 | `NEXT_PUBLIC_SUPABASE_URL`      | Yes                      | Supabase project URL used by browser client.                                                 |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes                      | Supabase anon key used by browser client.                                                    |
-| `NEXT_PUBLIC_API_BASE_URL`      | Optional but recommended | FastAPI base URL. Defaults to `http://127.0.0.1:8000` in `dashboard/src/lib/predictions.ts`. |
+| `NEXT_PUBLIC_API_BASE_URL`      | Optional but recommended | FastAPI base URL. Defaults to `http://127.0.0.1:8000` in `frontend/src/lib/predictions.ts`. |
 
 ## Optional Ollama Setup
 
-`api/llm_analysis.py` expects Ollama at:
+`backend/api/llm_analysis.py` expects Ollama at:
 
 ```text
 http://localhost:11434/api/generate
@@ -109,16 +109,16 @@ OLLAMA_MODEL = "llama3.2"
 
 ## Regenerating Allowed Values
 
-When `data/processed/cleaned_salaries.csv` changes, regenerate API validation options:
+When `backend/data/processed/cleaned_salaries.csv` changes, regenerate API validation options:
 
 ```powershell
-python api\create_allowed_values.py
+python backend\api\create_allowed_values.py
 ```
 
 This updates:
 
 ```text
-api/allowed_values.json
+backend/api/allowed_values.json
 ```
 
 ## Running Tests
@@ -126,25 +126,25 @@ api/allowed_values.json
 Start the backend first:
 
 ```powershell
-uvicorn api.main:app --reload
+uvicorn backend.api.main:app --reload
 ```
 
 Then run the API test script:
 
 ```powershell
-python scripts\test_prediction_api.py
+python backend\scripts\test_prediction_api.py
 ```
 
 The script writes:
 
 ```text
-reports/api_prediction_test_results.csv
+backend/reports/api_prediction_test_results.csv
 ```
 
 Dashboard checks:
 
 ```powershell
-cd dashboard
+cd frontend
 npm run lint
 npm run build
 ```
@@ -170,5 +170,7 @@ npm run build
 ## Assumptions / Missing Information
 
 - The repo does not include a `.env.example`; the examples above are based on code usage.
-- The root `.gitignore` ignores `.env`, but the root `.gitignore` does not explicitly ignore `dashboard/.env.local`.
+- The root `.gitignore` ignores backend and frontend environment/build artifacts.
 - No automated setup script exists for creating the Supabase table.
+
+

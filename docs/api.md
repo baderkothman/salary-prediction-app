@@ -2,7 +2,7 @@
 
 ## Overview
 
-The backend is a FastAPI application defined in `api/main.py`.
+The backend is a FastAPI application defined in `backend/api/main.py`.
 
 Default local base URL:
 
@@ -22,7 +22,7 @@ All implemented endpoints use `GET`.
 
 The API does not implement authentication or authorization.
 
-The Supabase service role key is used server-side by `api/supabase_service.py` for insert and history operations. It must never be exposed to the browser.
+The Supabase service role key is used server-side by `backend/api/supabase_service.py` for insert and history operations. It must never be exposed to the browser.
 
 ## Common Prediction Query Parameters
 
@@ -30,7 +30,7 @@ The `/predict` and `/analyze` endpoints require the same query parameters.
 
 | Parameter            | Type    | Required | Validation                                                                       |
 | -------------------- | ------- | -------- | -------------------------------------------------------------------------------- |
-| `work_year`          | integer | Yes      | Must exist in `api/allowed_values.json`. Current values: `2020`, `2021`, `2022`. |
+| `work_year`          | integer | Yes      | Must exist in `backend/api/allowed_values.json`. Current values: `2020`, `2021`, `2022`. |
 | `experience_level`   | string  | Yes      | Must be an allowed dataset value.                                                |
 | `employment_type`    | string  | Yes      | Must be an allowed dataset value.                                                |
 | `job_title`          | string  | Yes      | 2-100 characters and must be an allowed dataset value.                           |
@@ -98,7 +98,7 @@ Returns allowed values for prediction fields.
 }
 ```
 
-The actual response contains the full allowed-value lists from `api/allowed_values.json`.
+The actual response contains the full allowed-value lists from `backend/api/allowed_values.json`.
 
 ## `GET /predict`
 
@@ -292,3 +292,5 @@ This is convenient for local development but should be restricted in production.
 - No OpenAPI customization beyond FastAPI defaults is implemented.
 - No API keys, JWT validation, rate limiting, or user-level permissions are implemented.
 - All mutation-like behavior currently happens through `GET /analyze`, which inserts a Supabase row.
+
+

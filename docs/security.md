@@ -32,15 +32,15 @@ The root `.gitignore` ignores:
 ```text
 .env
 .venv/
-api/__pycache__/
+backend/**/__pycache__/
 ```
 
 Recommended additions:
 
 ```text
-dashboard/.env.local
-dashboard/.next/
-dashboard/node_modules/
+frontend/.env.local
+frontend/.next/
+frontend/node_modules/
 __pycache__/
 *.pyc
 ```
@@ -105,7 +105,7 @@ Prompt injection risk is lower than in a free-form chat or RAG app, but still po
 
 Current mitigation:
 
-- `job_title` must exist in `api/allowed_values.json`.
+- `job_title` must exist in `backend/api/allowed_values.json`.
 - The prompt tells the model not to invent facts outside the provided data.
 
 Recommended improvements:
@@ -137,7 +137,7 @@ Recommendations:
 The backend writes chart PNGs to:
 
 ```text
-static/charts/
+backend/static/charts/
 ```
 
 The filename is generated with `uuid4`, which reduces collision risk. The app does not accept user-uploaded files.
@@ -154,7 +154,7 @@ Recommended routine checks:
 
 ```powershell
 pip list --outdated
-cd dashboard
+cd frontend
 npm audit
 ```
 
@@ -182,3 +182,6 @@ Recommended controls:
 - No authentication requirements are defined.
 - No production secret-management approach is specified.
 - No privacy policy or data-retention policy is included.
+
+
+
