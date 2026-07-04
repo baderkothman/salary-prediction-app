@@ -21,11 +21,12 @@ export default function ComparisonPanel({
 }: ComparisonPanelProps) {
   return (
     <SectionCard
-      title="Compare Predictions"
+      title="Compare Two Estimates"
+      description="See two of your estimates side by side and the salary difference between them."
       icon={<CompareArrowsIcon sx={{ color: "#000" }} aria-hidden="true" />}
     >
       {selectedPredictions.length < 2 ? (
-        <DashboardEmptyState message="Select two history rows to compare salary, inputs, and benchmark deltas." />
+        <DashboardEmptyState message="Nothing to compare yet. Tick the boxes next to two estimates in the list above and they will appear here." />
       ) : (
         <Stack spacing={2}>
           <Box
@@ -63,7 +64,7 @@ export default function ComparisonPanel({
           </Box>
 
           <Alert severity="success" sx={{ borderRadius: "8px" }}>
-            Difference:{" "}
+            Salary difference between the two:{" "}
             {formatCurrency(
               Math.abs(
                 (selectedPredictions[0].predicted_salary ?? 0) -
@@ -83,7 +84,7 @@ export default function ComparisonPanel({
               textTransform: "none",
             }}
           >
-            Clear comparison
+            Clear Selection
           </Button>
         </Stack>
       )}

@@ -37,19 +37,19 @@ export default function DashboardStats({
   }[] = [
     {
       key: "total",
-      label: "Matching predictions",
+      label: "Results shown",
       value: filteredCount,
       icon: DatasetIcon,
     },
     {
       key: "average",
-      label: "Average predicted salary",
+      label: "Average estimate",
       value: formatCurrency(averagePredictedSalary),
       icon: BarChartIcon,
     },
     {
       key: "latest",
-      label: "Latest predicted salary",
+      label: "Newest estimate",
       value: formatCurrency(latestPrediction?.predicted_salary),
       icon: PaidIcon,
     },
@@ -72,8 +72,7 @@ export default function DashboardStats({
   const aiText =
     latestPrediction?.llm_analysis?.trim() ||
     insightText ||
-    "Run and save a prediction to generate the analyst narrative.";
-  const coveragePercent = Math.min(100, Math.max(8, filteredCount * 12));
+    "Create a salary estimate and a short written summary of the result will appear here.";
 
   return (
     <Box
@@ -112,7 +111,7 @@ export default function DashboardStats({
         <Stack spacing={3} sx={{ height: "100%", justifyContent: "space-between" }}>
           <Box>
             <Typography className="sl-label-md" sx={{ color: "var(--sl-muted)", mb: 1 }}>
-              Predicted Benchmark
+              Your Latest Salary Estimate
             </Typography>
             <Typography
               component="h2"
@@ -131,7 +130,7 @@ export default function DashboardStats({
                 ? `Based on ${latestPrediction.job_title ?? "saved role"}, ${
                     latestPrediction.company_location ?? "global"
                   }, ${latestPrediction.company_size ?? "unknown"} company.`
-                : "Save a prediction to populate the latest salary benchmark."}
+                : "Create your first estimate to see it here."}
             </Typography>
           </Box>
 
@@ -144,44 +143,16 @@ export default function DashboardStats({
                 alignItems: "end",
               }}
             >
-              <Box>
-                <Stack direction="row" sx={{ justifyContent: "space-between", mb: 0.75 }}>
-                  <Typography className="sl-label">Data Coverage</Typography>
-                  <Typography className="sl-label" sx={{ color: "var(--sl-blue)" }}>
-                    {coveragePercent}%
-                  </Typography>
-                </Stack>
-                <Box
-                  sx={{
-                    height: 8,
-                    bgcolor: "var(--sl-panel-mid)",
-                    borderRadius: 8,
-                    overflow: "hidden",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      height: "100%",
-                      width: `${coveragePercent}%`,
-                      bgcolor: "#000",
-                      boxShadow: "0 0 12px rgba(57, 128, 244, 0.35)",
-                    }}
-                  />
-                </Box>
-              </Box>
+              <Typography sx={{ color: "var(--sl-muted)", fontSize: 13 }}>
+                Click a card below to see a quick note about that number.
+              </Typography>
 
               <Stack direction="row" spacing={3} sx={{ justifyContent: { md: "flex-end" } }}>
                 <Box sx={{ textAlign: { xs: "left", md: "right" } }}>
                   <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-                    Market Range
+                    Typical market range
                   </Typography>
                   <Typography className="sl-label-md">{marketRange}</Typography>
-                </Box>
-                <Box sx={{ textAlign: { xs: "left", md: "right" } }}>
-                  <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-                    Records
-                  </Typography>
-                  <Typography className="sl-label-md">{filteredCount}</Typography>
                 </Box>
               </Stack>
             </Box>
@@ -252,7 +223,7 @@ export default function DashboardStats({
           <Stack direction="row" spacing={1} sx={{ alignItems: "center", mb: 2 }}>
             <AutoAwesomeIcon sx={{ color: "var(--sl-navy)", fontSize: 22 }} />
             <Typography className="sl-label-md" sx={{ color: "var(--sl-blue)" }}>
-              AI Analysis
+              What This Means
             </Typography>
           </Stack>
 
@@ -292,7 +263,7 @@ export default function DashboardStats({
             }}
           >
             <RefreshIcon sx={{ fontSize: 15 }} />
-            Re-analyze parameters
+            Show note for newest estimate
           </ButtonBase>
         </Box>
       </Box>

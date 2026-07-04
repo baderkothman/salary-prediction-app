@@ -78,10 +78,6 @@ function ChipButton({
   );
 }
 
-function companyInitial(value: string) {
-  return value.slice(0, 1).toUpperCase();
-}
-
 export default function PredictionSimulator({
   simulator,
   options,
@@ -94,7 +90,10 @@ export default function PredictionSimulator({
   const maxRemote = remoteOptions[remoteOptions.length - 1] ?? 100;
 
   return (
-    <SectionCard>
+    <SectionCard
+      title="Job Details"
+      description="Tell us about the job. Every field already has a value, so you can press the button right away and adjust later."
+    >
       <Stack
         spacing={3}
         component="form"
@@ -112,7 +111,7 @@ export default function PredictionSimulator({
             <TextField
               {...params}
               label="Job Title"
-              placeholder="Select a title..."
+              placeholder="Type to search, e.g. Data Scientist"
               sx={fieldSx}
             />
           )}
@@ -183,9 +182,10 @@ export default function PredictionSimulator({
                     fontWeight: 700,
                     textTransform: "none",
                     minWidth: 0,
+                    fontSize: 12,
                   }}
                 >
-                  {companyInitial(value)}
+                  {value}
                 </Button>
               ))}
             </Stack>
@@ -193,7 +193,7 @@ export default function PredictionSimulator({
 
           <Box>
             <Typography className="sl-label" sx={{ color: "var(--sl-muted)", mb: 2 }}>
-              Remote Ratio
+              How much remote work?
             </Typography>
             <Slider
               value={simulator.remote_ratio}
@@ -228,10 +228,10 @@ export default function PredictionSimulator({
           </Box>
 
           <FormControl size="small" sx={fieldSx}>
-            <InputLabel id="simulator-work-year-label">Work year</InputLabel>
+            <InputLabel id="simulator-work-year-label">Year</InputLabel>
             <Select
               labelId="simulator-work-year-label"
-              label="Work year"
+              label="Year"
               value={String(simulator.work_year)}
               onChange={(event) => onChange("work_year", Number(event.target.value))}
             >
@@ -252,7 +252,7 @@ export default function PredictionSimulator({
               onChange("employee_residence", value ?? simulator.employee_residence)
             }
             renderInput={(params) => (
-              <TextField {...params} label="Residence country" sx={fieldSx} />
+              <TextField {...params} label="Where the employee lives" sx={fieldSx} />
             )}
           />
 
@@ -265,7 +265,7 @@ export default function PredictionSimulator({
               onChange("company_location", value ?? simulator.company_location)
             }
             renderInput={(params) => (
-              <TextField {...params} label="Company country" sx={fieldSx} />
+              <TextField {...params} label="Where the company is based" sx={fieldSx} />
             )}
           />
         </Box>
@@ -288,8 +288,14 @@ export default function PredictionSimulator({
           }}
           startIcon={analyzing ? <CircularProgress color="inherit" size={18} /> : null}
         >
-          {analyzing ? "Processing Data..." : "Generate Prediction"}
+          {analyzing ? "Estimating your salary..." : "Estimate Salary"}
         </Button>
+        <Typography
+          className="sl-label"
+          sx={{ color: "var(--sl-muted)", textAlign: "center", textTransform: "none" }}
+        >
+          Takes a few seconds. Your result is saved automatically under My Results.
+        </Typography>
       </Stack>
     </SectionCard>
   );

@@ -21,11 +21,11 @@ import SectionCard from "./SectionCard";
 const chartColors = ["#d5e3fd", "#b9c7e0", "#000000", "#adc6ff", "#001a42"];
 
 const chartModeTabs: { value: ChartMode; label: string }[] = [
-  { value: "experience", label: "Experience" },
-  { value: "job", label: "Job" },
-  { value: "company", label: "Company" },
-  { value: "remote", label: "Remote" },
-  { value: "benchmarks", label: "Benchmarks" },
+  { value: "experience", label: "By Experience" },
+  { value: "job", label: "By Job Title" },
+  { value: "company", label: "By Company Size" },
+  { value: "remote", label: "By Remote Work" },
+  { value: "benchmarks", label: "Latest vs. Market" },
 ];
 
 type SalaryBreakdownChartProps = {
@@ -41,8 +41,8 @@ export default function SalaryBreakdownChart({
 }: SalaryBreakdownChartProps) {
   return (
     <SectionCard
-      title="Salary Breakdown"
-      description="Average predicted salary grouped by the selected dimension."
+      title="Salary Chart"
+      description="Average estimated salary from your results. Use the tabs to group the bars in different ways."
       action={
         <Tabs
           value={chartMode}
@@ -79,7 +79,7 @@ export default function SalaryBreakdownChart({
       {chartData.length === 0 ? (
         <DashboardEmptyState
           severity="warning"
-          message="No chartable data matches the current filters."
+          message="Nothing to chart yet. Try clearing some filters, or create a new salary estimate."
         />
       ) : (
         <Box sx={{ height: 360, minWidth: 0, pt: 1 }}>

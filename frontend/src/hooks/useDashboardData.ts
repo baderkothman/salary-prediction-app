@@ -77,7 +77,7 @@ export function useDashboardData() {
       setError(
         loadError instanceof Error
           ? loadError.message
-          : "Failed to load dashboard data",
+          : "We couldn't load your results. Please check your connection and try again.",
       );
     } finally {
       setLoading(false);
@@ -184,9 +184,9 @@ export function useDashboardData() {
       }
 
       setSuccess(
-        `Saved ${simulator.job_title} prediction at ${formatCurrency(
+        `Done! Estimated salary for ${simulator.job_title}: ${formatCurrency(
           result.prediction.salary_in_usd,
-        )}.`,
+        )}. The result was saved to My Results.`,
       );
       await loadPredictions(false);
       setChartMode("benchmarks");
@@ -197,7 +197,7 @@ export function useDashboardData() {
       setError(
         analyzeError instanceof Error
           ? analyzeError.message
-          : "Failed to run salary analysis",
+          : "Something went wrong while estimating the salary. Please try again.",
       );
     } finally {
       setAnalyzing(false);

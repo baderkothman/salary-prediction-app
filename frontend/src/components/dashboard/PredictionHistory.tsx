@@ -6,9 +6,8 @@ import Checkbox from "@mui/material/Checkbox";
 import Collapse from "@mui/material/Collapse";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import DownloadIcon from "@mui/icons-material/Download";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
-import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import type { SalaryPrediction } from "@/types/prediction";
 import { formatCurrency, formatDate, getChartUrl } from "@/utils/dashboard-formatters";
@@ -35,50 +34,35 @@ export default function PredictionHistory({
 }: PredictionHistoryProps) {
   return (
     <SectionCard
-      title="Prediction History"
-      description="Review and export recent model outputs."
-      action={
-        <Button
-          variant="outlined"
-          startIcon={<DownloadIcon />}
-          sx={{
-            borderColor: "var(--sl-border)",
-            color: "var(--sl-text)",
-            borderRadius: "6px",
-            fontFamily: 'var(--font-jetbrains-mono), monospace',
-            fontSize: 12,
-            fontWeight: 700,
-            textTransform: "none",
-          }}
-        >
-          Export All
-        </Button>
-      }
+      title="Your Past Estimates"
+      description="Every estimate you create is saved here. Tick the boxes on two rows to compare them side by side."
     >
       {predictions.length === 0 ? (
-        <DashboardEmptyState message="No predictions match the current filters. Try widening your filters or running a new analysis." />
+        <DashboardEmptyState message="No results match your current filters. Try clearing some filters, or create a new salary estimate." />
       ) : (
         <Box sx={{ overflowX: "auto", mx: -3, mb: -3 }}>
           <Box component="table" sx={tableSx}>
             <Box component="thead" sx={{ bgcolor: "var(--sl-panel-low)" }}>
               <Box component="tr">
                 <Box component="th" sx={headerCellSx}>
-                  Select
+                  Compare
                 </Box>
                 <Box component="th" sx={headerCellSx}>
-                  Position & Dataset
+                  Job
                 </Box>
                 <Box component="th" sx={headerCellSx}>
                   Location
                 </Box>
                 <Box component="th" sx={{ ...headerCellSx, textAlign: "right" }}>
-                  Predicted Salary
+                  Estimated Salary
                 </Box>
                 <Box component="th" sx={{ ...headerCellSx, textAlign: "center" }}>
-                  Benchmark
+                  Vs. Market Average
                 </Box>
                 <Box component="th" sx={{ ...headerCellSx, textAlign: "right" }}>
-                  Action
+                  <Box component="span" sx={visuallyHiddenSx}>
+                    Details
+                  </Box>
                 </Box>
               </Box>
             </Box>
@@ -142,18 +126,20 @@ export default function PredictionHistory({
                             height: 6,
                             borderRadius: "50%",
                             bgcolor:
-                              benchmarkDelta === null || benchmarkDelta >= 0
-                                ? "var(--sl-error)"
-                                : "var(--sl-blue)",
+                              benchmarkDelta === null
+                                ? "var(--sl-muted)"
+                                : benchmarkDelta >= 0
+                                  ? "var(--sl-blue)"
+                                  : "var(--sl-error)",
                             mt: "7px",
                           }}
                         />
                         <Typography className="sl-label">
                           {benchmarkDelta === null
-                            ? "N/A"
+                            ? "No data"
                             : benchmarkDelta >= 0
-                              ? `Above ${formatCurrency(Math.abs(benchmarkDelta))}`
-                              : `Below ${formatCurrency(Math.abs(benchmarkDelta))}`}
+                              ? `${formatCurrency(Math.abs(benchmarkDelta))} above`
+                              : `${formatCurrency(Math.abs(benchmarkDelta))} below`}
                         </Typography>
                       </Stack>
                     </Box>
@@ -165,7 +151,7 @@ export default function PredictionHistory({
                           expanded ? (
                             <ExpandLessIcon sx={{ fontSize: 18 }} />
                           ) : (
-                            <OpenInNewIcon sx={{ fontSize: 18 }} />
+                            <ExpandMoreIcon sx={{ fontSize: 18 }} />
                           )
                         }
                         sx={{
@@ -177,7 +163,7 @@ export default function PredictionHistory({
                           "&:hover": { color: "#000" },
                         }}
                       >
-                        Details
+                        {expanded ? "Hide details" : "View details"}
                       </Button>
                     </Box>
                     </Box>
@@ -200,7 +186,7 @@ export default function PredictionHistory({
                             </Typography>
                             <Typography sx={{ whiteSpace: "pre-line", mt: 1 }}>
                               {prediction.llm_analysis ||
-                                "No LLM analysis was saved for this prediction."}
+                                "No written summary was saved for this estimate."}
                             </Typography>
                           </Box>
                           {chartUrl ? (
@@ -230,7 +216,11 @@ export default function PredictionHistory({
           </Box>
           <Box sx={{ px: 3, py: 1.5, borderTop: "1px solid var(--sl-border)" }}>
             <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-              {selectedCount}/2 selected for comparison
+              {selectedCount === 0
+                ? "Tick the boxes on two rows to compare them side by side."
+                : selectedCount === 1
+                  ? "1 of 2 selected — pick one more to compare."
+                  : "2 of 2 selected — see the comparison below."}
             </Typography>
           </Box>
         </Box>
@@ -238,6 +228,15 @@ export default function PredictionHistory({
     </SectionCard>
   );
 }
+
+const visuallyHiddenSx = {
+  position: "absolute",
+  width: 1,
+  height: 1,
+  overflow: "hidden",
+  clip: "rect(0 0 0 0)",
+  whiteSpace: "nowrap",
+};
 
 const tableSx = {
   width: "100%",

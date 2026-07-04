@@ -30,13 +30,14 @@ export default function DashboardFilters({
 }: DashboardFiltersProps) {
   return (
     <SectionCard
-      title="Dashboard Controls"
-      description="Narrow the prediction history and grouped chart."
+      title="Filter Your Results"
+      description="Show only the results you care about. The chart and the list update as you change these."
       icon={<FilterAltIcon sx={{ color: "#000" }} aria-hidden="true" />}
     >
       <Stack spacing={2}>
         <TextField
-          label="Search role or location"
+          label="Search by job title or country"
+          placeholder="e.g. Data Scientist"
           size="small"
           value={filters.search}
           onChange={(event) => onChange("search", event.target.value)}
@@ -44,10 +45,10 @@ export default function DashboardFilters({
         />
 
         <FormControl size="small" sx={fieldSx}>
-          <InputLabel id="filter-experience-label">Experience</InputLabel>
+          <InputLabel id="filter-experience-label">Experience level</InputLabel>
           <Select
             labelId="filter-experience-label"
-            label="Experience"
+            label="Experience level"
             value={filters.experience}
             onChange={(event) => onChange("experience", event.target.value)}
           >
@@ -78,17 +79,17 @@ export default function DashboardFilters({
         </FormControl>
 
         <FormControl size="small" sx={fieldSx}>
-          <InputLabel id="filter-remote-ratio-label">Remote ratio</InputLabel>
+          <InputLabel id="filter-remote-ratio-label">Remote work</InputLabel>
           <Select
             labelId="filter-remote-ratio-label"
-            label="Remote ratio"
+            label="Remote work"
             value={filters.remoteRatio}
             onChange={(event) => onChange("remoteRatio", event.target.value)}
           >
-            <MenuItem value="all">All remote ratios</MenuItem>
+            <MenuItem value="all">Any amount</MenuItem>
             {optionValues(options.remote_ratio).map((value) => (
               <MenuItem key={value} value={String(value)}>
-                {value}%
+                {value === 0 ? "0% — fully on-site" : value === 100 ? "100% — fully remote" : `${value}% remote`}
               </MenuItem>
             ))}
           </Select>
@@ -96,7 +97,7 @@ export default function DashboardFilters({
 
         <Box>
           <Typography id="filter-salary-range-label" variant="body2" sx={{ fontWeight: 700 }}>
-            Salary range
+            Salary range (per year)
           </Typography>
           <Slider
             value={filters.salaryRange}
@@ -126,7 +127,7 @@ export default function DashboardFilters({
         </Box>
 
         <TextField
-          label="Start date"
+          label="Created after"
           size="small"
           type="date"
           value={filters.startDate}
@@ -135,7 +136,7 @@ export default function DashboardFilters({
           sx={fieldSx}
         />
         <TextField
-          label="End date"
+          label="Created before"
           size="small"
           type="date"
           value={filters.endDate}

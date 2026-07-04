@@ -4,9 +4,9 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SalaryLens AI",
+  title: "SalaryLens AI — Know what a job should pay",
   description:
-    "Dashboard for salary predictions, LLM analysis, and visualizations.",
+    "Get an instant salary estimate for any tech job, based on real market data. Compare roles, experience levels, and locations in seconds.",
 };
 
 const inter = Inter({
