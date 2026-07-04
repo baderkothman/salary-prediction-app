@@ -92,6 +92,7 @@ export default function PredictionSimulator({
 }: PredictionSimulatorProps) {
   const remoteButtons = [
     { label: "On-site", value: 0 },
+    { label: "Hybrid", value: 50 },
     { label: "Remote", value: 100 },
   ].filter((option) => optionValues(options.remote_ratio).includes(option.value));
 

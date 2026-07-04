@@ -173,6 +173,7 @@ function FieldTitle({ children }: { children: string }) {
 
 function formatRemoteOption(value: number) {
   if (value === 0) return "0% - fully on-site";
+  if (value === 50) return "50% - hybrid";
   if (value === 100) return "100% - fully remote";
   return `${value}% remote`;
 }
