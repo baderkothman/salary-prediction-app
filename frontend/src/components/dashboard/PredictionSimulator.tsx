@@ -3,10 +3,8 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import Slider from "@mui/material/Slider";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
@@ -33,13 +31,20 @@ const fieldSx = {
     "&:hover fieldset": { borderColor: "var(--sl-border-strong)" },
     "&.Mui-focused fieldset": { borderColor: "#000", borderWidth: 1 },
   },
-  "& .MuiInputLabel-root": {
-    fontFamily: 'var(--font-jetbrains-mono), monospace',
-    fontSize: 12,
-    fontWeight: 600,
-    color: "var(--sl-muted)",
-  },
 };
+
+const fieldTitleSx = {
+  color: "var(--sl-muted)",
+  mb: 1,
+};
+
+function FieldTitle({ children }: { children: string }) {
+  return (
+    <Typography className="sl-label" sx={fieldTitleSx}>
+      {children}
+    </Typography>
+  );
+}
 
 function ChipButton({
   label,
@@ -85,9 +90,10 @@ export default function PredictionSimulator({
   onChange,
   onSubmit,
 }: PredictionSimulatorProps) {
-  const remoteOptions = optionValues(options.remote_ratio).sort((a, b) => a - b);
-  const minRemote = remoteOptions[0] ?? 0;
-  const maxRemote = remoteOptions[remoteOptions.length - 1] ?? 100;
+  const remoteButtons = [
+    { label: "On-site", value: 0 },
+    { label: "Remote", value: 100 },
+  ].filter((option) => optionValues(options.remote_ratio).includes(option.value));
 
   return (
     <SectionCard
@@ -102,20 +108,22 @@ export default function PredictionSimulator({
           onSubmit();
         }}
       >
-        <Autocomplete
-          size="small"
-          options={options.job_title}
-          value={simulator.job_title}
-          onChange={(_, value) => onChange("job_title", value ?? simulator.job_title)}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              label="Job Title"
-              placeholder="Type to search, e.g. Data Scientist"
-              sx={fieldSx}
-            />
-          )}
-        />
+        <Box>
+          <FieldTitle>Job title</FieldTitle>
+          <Autocomplete
+            size="small"
+            options={options.job_title}
+            value={simulator.job_title}
+            onChange={(_, value) => onChange("job_title", value ?? simulator.job_title)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                placeholder="Type to search, e.g. Data Scientist"
+                sx={fieldSx}
+              />
+            )}
+          />
+        </Box>
 
         <Box
           sx={{
@@ -125,9 +133,7 @@ export default function PredictionSimulator({
           }}
         >
           <Box>
-            <Typography className="sl-label" sx={{ color: "var(--sl-muted)", mb: 1 }}>
-              Experience Level
-            </Typography>
+            <FieldTitle>Experience level</FieldTitle>
             <Stack direction="row" spacing={1} useFlexGap sx={{ flexWrap: "wrap" }}>
               {optionValues(options.experience_level).map((value) => (
                 <ChipButton
@@ -140,26 +146,25 @@ export default function PredictionSimulator({
             </Stack>
           </Box>
 
-          <FormControl size="small" sx={fieldSx}>
-            <InputLabel id="simulator-employment-label">Employment Type</InputLabel>
-            <Select
-              labelId="simulator-employment-label"
-              label="Employment Type"
-              value={simulator.employment_type}
-              onChange={(event) => onChange("employment_type", event.target.value)}
-            >
-              {optionValues(options.employment_type).map((value) => (
-                <MenuItem key={value} value={value}>
-                  {value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Box>
+            <FieldTitle>Employment type</FieldTitle>
+            <FormControl fullWidth size="small" sx={fieldSx}>
+              <Select
+                value={simulator.employment_type}
+                onChange={(event) => onChange("employment_type", event.target.value)}
+                displayEmpty
+              >
+                {optionValues(options.employment_type).map((value) => (
+                  <MenuItem key={value} value={value}>
+                    {value}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
 
           <Box>
-            <Typography className="sl-label" sx={{ color: "var(--sl-muted)", mb: 1 }}>
-              Company Size
-            </Typography>
+            <FieldTitle>Company size</FieldTitle>
             <Stack direction="row" spacing={1}>
               {optionValues(options.company_size).map((value) => (
                 <Button
@@ -192,82 +197,84 @@ export default function PredictionSimulator({
           </Box>
 
           <Box>
-            <Typography className="sl-label" sx={{ color: "var(--sl-muted)", mb: 2 }}>
-              How much remote work?
-            </Typography>
-            <Slider
-              value={simulator.remote_ratio}
-              min={minRemote}
-              max={maxRemote}
-              step={50}
-              marks={remoteOptions.map((value) => ({ value }))}
-              onChange={(_, value) => onChange("remote_ratio", Number(value))}
-              sx={{
-                color: "#000",
-                mx: 0.5,
-                "& .MuiSlider-rail": { color: "var(--sl-panel-high)" },
-                "& .MuiSlider-thumb": {
-                  width: 14,
-                  height: 14,
-                  border: "2px solid #000",
-                  bgcolor: "#fff",
-                },
-              }}
-            />
-            <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-              <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-                On-site
-              </Typography>
-              <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-                Hybrid
-              </Typography>
-              <Typography className="sl-label" sx={{ color: "var(--sl-muted)" }}>
-                Remote
-              </Typography>
+            <FieldTitle>Remote work</FieldTitle>
+            <Stack direction="row" spacing={1}>
+              {remoteButtons.map((option) => (
+                <Button
+                  key={option.value}
+                  type="button"
+                  onClick={() => onChange("remote_ratio", option.value)}
+                  variant="outlined"
+                  sx={{
+                    flex: 1,
+                    py: 0.85,
+                    borderRadius: "6px",
+                    borderColor:
+                      simulator.remote_ratio === option.value
+                        ? "#000"
+                        : "var(--sl-border)",
+                    bgcolor:
+                      simulator.remote_ratio === option.value
+                        ? "var(--sl-secondary-container)"
+                        : "transparent",
+                    color: "var(--sl-text)",
+                    fontFamily: 'var(--font-jetbrains-mono), monospace',
+                    fontWeight: 700,
+                    textTransform: "none",
+                    minWidth: 0,
+                    fontSize: 12,
+                  }}
+                >
+                  {option.label}
+                </Button>
+              ))}
             </Stack>
           </Box>
 
-          <FormControl size="small" sx={fieldSx}>
-            <InputLabel id="simulator-work-year-label">Year</InputLabel>
-            <Select
-              labelId="simulator-work-year-label"
-              label="Year"
-              value={String(simulator.work_year)}
-              onChange={(event) => onChange("work_year", Number(event.target.value))}
-            >
-              {optionValues(options.work_year).map((value) => (
-                <MenuItem key={value} value={String(value)}>
-                  {value}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Box>
+            <FieldTitle>Year</FieldTitle>
+            <FormControl fullWidth size="small" sx={fieldSx}>
+              <Select
+                value={String(simulator.work_year)}
+                onChange={(event) => onChange("work_year", Number(event.target.value))}
+                displayEmpty
+              >
+                {optionValues(options.work_year).map((value) => (
+                  <MenuItem key={value} value={String(value)}>
+                    {value}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
 
-          <Autocomplete
-            size="small"
-            options={options.employee_residence}
-            getOptionLabel={formatCountry}
-            value={simulator.employee_residence}
-            onChange={(_, value) =>
-              onChange("employee_residence", value ?? simulator.employee_residence)
-            }
-            renderInput={(params) => (
-              <TextField {...params} label="Where the employee lives" sx={fieldSx} />
-            )}
-          />
+          <Box>
+            <FieldTitle>Where the employee lives</FieldTitle>
+            <Autocomplete
+              size="small"
+              options={options.employee_residence}
+              getOptionLabel={formatCountry}
+              value={simulator.employee_residence}
+              onChange={(_, value) =>
+                onChange("employee_residence", value ?? simulator.employee_residence)
+              }
+              renderInput={(params) => <TextField {...params} sx={fieldSx} />}
+            />
+          </Box>
 
-          <Autocomplete
-            size="small"
-            options={options.company_location}
-            getOptionLabel={formatCountry}
-            value={simulator.company_location}
-            onChange={(_, value) =>
-              onChange("company_location", value ?? simulator.company_location)
-            }
-            renderInput={(params) => (
-              <TextField {...params} label="Where the company is based" sx={fieldSx} />
-            )}
-          />
+          <Box>
+            <FieldTitle>Where the company is based</FieldTitle>
+            <Autocomplete
+              size="small"
+              options={options.company_location}
+              getOptionLabel={formatCountry}
+              value={simulator.company_location}
+              onChange={(_, value) =>
+                onChange("company_location", value ?? simulator.company_location)
+              }
+              renderInput={(params) => <TextField {...params} sx={fieldSx} />}
+            />
+          </Box>
         </Box>
 
         <Button

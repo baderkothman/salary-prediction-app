@@ -101,5 +101,7 @@ export function filterPredictions(predictions: SalaryPrediction[], filters: Filt
 }
 
 export function optionValues<T extends string | number>(values: T[]) {
-  return Array.from(new Set(values)).filter(Boolean);
+  return Array.from(new Set(values)).filter(
+    (value) => value !== null && value !== undefined && value !== "",
+  );
 }

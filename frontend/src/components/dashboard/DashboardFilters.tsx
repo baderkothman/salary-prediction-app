@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import FormControl from "@mui/material/FormControl";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import Slider from "@mui/material/Slider";
@@ -35,68 +34,78 @@ export default function DashboardFilters({
       icon={<FilterAltIcon sx={{ color: "#000" }} aria-hidden="true" />}
     >
       <Stack spacing={2}>
-        <TextField
-          label="Search by job title or country"
-          placeholder="e.g. Data Scientist"
-          size="small"
-          value={filters.search}
-          onChange={(event) => onChange("search", event.target.value)}
-          sx={fieldSx}
-        />
-
-        <FormControl size="small" sx={fieldSx}>
-          <InputLabel id="filter-experience-label">Experience level</InputLabel>
-          <Select
-            labelId="filter-experience-label"
-            label="Experience level"
-            value={filters.experience}
-            onChange={(event) => onChange("experience", event.target.value)}
-          >
-            <MenuItem value="all">All levels</MenuItem>
-            {optionValues(options.experience_level).map((value) => (
-              <MenuItem key={value} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={fieldSx}>
-          <InputLabel id="filter-company-size-label">Company size</InputLabel>
-          <Select
-            labelId="filter-company-size-label"
-            label="Company size"
-            value={filters.companySize}
-            onChange={(event) => onChange("companySize", event.target.value)}
-          >
-            <MenuItem value="all">All sizes</MenuItem>
-            {optionValues(options.company_size).map((value) => (
-              <MenuItem key={value} value={value}>
-                {value}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={fieldSx}>
-          <InputLabel id="filter-remote-ratio-label">Remote work</InputLabel>
-          <Select
-            labelId="filter-remote-ratio-label"
-            label="Remote work"
-            value={filters.remoteRatio}
-            onChange={(event) => onChange("remoteRatio", event.target.value)}
-          >
-            <MenuItem value="all">Any amount</MenuItem>
-            {optionValues(options.remote_ratio).map((value) => (
-              <MenuItem key={value} value={String(value)}>
-                {value === 0 ? "0% — fully on-site" : value === 100 ? "100% — fully remote" : `${value}% remote`}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+        <Box>
+          <FieldTitle>Search by job title or country</FieldTitle>
+          <TextField
+            placeholder="e.g. Data Scientist"
+            size="small"
+            value={filters.search}
+            onChange={(event) => onChange("search", event.target.value)}
+            sx={fieldSx}
+            fullWidth
+          />
+        </Box>
 
         <Box>
-          <Typography id="filter-salary-range-label" variant="body2" sx={{ fontWeight: 700 }}>
+          <FieldTitle>Experience level</FieldTitle>
+          <FormControl fullWidth size="small" sx={fieldSx}>
+            <Select
+              value={filters.experience}
+              onChange={(event) => onChange("experience", event.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="all">All levels</MenuItem>
+              {optionValues(options.experience_level).map((value) => (
+                <MenuItem key={value} value={value}>
+                  {value}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Box>
+          <FieldTitle>Company size</FieldTitle>
+          <FormControl fullWidth size="small" sx={fieldSx}>
+            <Select
+              value={filters.companySize}
+              onChange={(event) => onChange("companySize", event.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="all">All sizes</MenuItem>
+              {optionValues(options.company_size).map((value) => (
+                <MenuItem key={value} value={value}>
+                  {value}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Box>
+          <FieldTitle>Remote work</FieldTitle>
+          <FormControl fullWidth size="small" sx={fieldSx}>
+            <Select
+              value={filters.remoteRatio}
+              onChange={(event) => onChange("remoteRatio", event.target.value)}
+              displayEmpty
+            >
+              <MenuItem value="all">Any amount</MenuItem>
+              {optionValues(options.remote_ratio).map((value) => (
+                <MenuItem key={value} value={String(value)}>
+                  {formatRemoteOption(value)}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Box>
+
+        <Box>
+          <Typography
+            id="filter-salary-range-label"
+            className="sl-label"
+            sx={{ color: "var(--sl-muted)", mb: 1 }}
+          >
             Salary range (per year)
           </Typography>
           <Slider
@@ -126,27 +135,46 @@ export default function DashboardFilters({
           </Typography>
         </Box>
 
-        <TextField
-          label="Created after"
-          size="small"
-          type="date"
-          value={filters.startDate}
-          slotProps={{ inputLabel: { shrink: true } }}
-          onChange={(event) => onChange("startDate", event.target.value)}
-          sx={fieldSx}
-        />
-        <TextField
-          label="Created before"
-          size="small"
-          type="date"
-          value={filters.endDate}
-          slotProps={{ inputLabel: { shrink: true } }}
-          onChange={(event) => onChange("endDate", event.target.value)}
-          sx={fieldSx}
-        />
+        <Box>
+          <FieldTitle>Created after</FieldTitle>
+          <TextField
+            size="small"
+            type="date"
+            value={filters.startDate}
+            onChange={(event) => onChange("startDate", event.target.value)}
+            sx={fieldSx}
+            fullWidth
+          />
+        </Box>
+
+        <Box>
+          <FieldTitle>Created before</FieldTitle>
+          <TextField
+            size="small"
+            type="date"
+            value={filters.endDate}
+            onChange={(event) => onChange("endDate", event.target.value)}
+            sx={fieldSx}
+            fullWidth
+          />
+        </Box>
       </Stack>
     </SectionCard>
   );
+}
+
+function FieldTitle({ children }: { children: string }) {
+  return (
+    <Typography className="sl-label" sx={{ color: "var(--sl-muted)", mb: 1 }}>
+      {children}
+    </Typography>
+  );
+}
+
+function formatRemoteOption(value: number) {
+  if (value === 0) return "0% - fully on-site";
+  if (value === 100) return "100% - fully remote";
+  return `${value}% remote`;
 }
 
 const fieldSx = {
@@ -157,11 +185,5 @@ const fieldSx = {
     "& fieldset": { borderColor: "var(--sl-border)" },
     "&:hover fieldset": { borderColor: "var(--sl-border-strong)" },
     "&.Mui-focused fieldset": { borderColor: "#000", borderWidth: 1 },
-  },
-  "& .MuiInputLabel-root": {
-    fontFamily: 'var(--font-jetbrains-mono), monospace',
-    fontSize: 12,
-    fontWeight: 600,
-    color: "var(--sl-muted)",
   },
 };

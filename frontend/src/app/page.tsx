@@ -20,7 +20,6 @@ import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import MenuIcon from "@mui/icons-material/Menu";
 import RefreshIcon from "@mui/icons-material/Refresh";
 import FilterAltOffIcon from "@mui/icons-material/FilterAltOff";
-import SearchIcon from "@mui/icons-material/Search";
 import SettingsIcon from "@mui/icons-material/Settings";
 import StorageIcon from "@mui/icons-material/Storage";
 
@@ -65,7 +64,6 @@ const iconMap: Record<string, typeof AnalyticsIcon> = {
   menu: MenuIcon,
   refresh: RefreshIcon,
   filter_off: FilterAltOffIcon,
-  search: SearchIcon,
   settings: SettingsIcon,
 };
 
@@ -147,35 +145,6 @@ export default function Home() {
             onClick={() => setActiveView("dashboard")}
           />
         </Stack>
-
-        <Box sx={{ px: 1, pb: 1 }}>
-          <ButtonBase
-            onClick={() => setActiveView("predict")}
-            sx={{
-              width: "100%",
-              bgcolor: "#000",
-              color: "#fff",
-              borderRadius: "8px",
-              py: 1.25,
-              fontFamily: 'var(--font-jetbrains-mono), monospace',
-              fontSize: 13,
-              fontWeight: 700,
-              gap: 1,
-              "&:hover": { opacity: 0.9 },
-            }}
-          >
-            <MaterialIcon size={18}>add</MaterialIcon>
-            New Salary Estimate
-          </ButtonBase>
-        </Box>
-
-        <Stack spacing={0.75} sx={{ borderTop: "1px solid var(--sl-border)", pt: 2 }}>
-          <NavButton
-            icon="history"
-            label="Past Estimates"
-            onClick={() => setActiveView("dashboard")}
-          />
-        </Stack>
       </aside>
 
       <main className="salarylens-main">
@@ -200,37 +169,6 @@ export default function Home() {
           </Typography>
 
           <Stack direction="row" spacing={1.5} sx={{ alignItems: "center" }}>
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                alignItems: "center",
-                gap: 1,
-                bgcolor: "var(--sl-panel-mid)",
-                border: "1px solid var(--sl-border)",
-                borderRadius: "999px",
-                px: 1.5,
-                py: 0.7,
-                width: 260,
-              }}
-            >
-              <MaterialIcon size={20}>search</MaterialIcon>
-              <Box
-                component="input"
-                aria-label="Search your results by job title or country"
-                placeholder="Search job title or country..."
-                value={dashboard.filters.search}
-                onChange={(event) => dashboard.updateFilter("search", event.target.value)}
-                sx={{
-                  border: 0,
-                  outline: 0,
-                  bgcolor: "transparent",
-                  width: "100%",
-                  fontSize: 13,
-                  color: "var(--sl-text)",
-                }}
-              />
-            </Box>
-
             <IconButton
               aria-label="Reload your results"
               title="Reload your results"
