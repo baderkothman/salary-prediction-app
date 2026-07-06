@@ -212,6 +212,7 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2021,Entry-level,Full-time,Machine Learning Engineer,DE,50,Hybrid,DE,Medium,24823
 2021,Senior-level,Full-time,Other,US,100,Remote,US,Large,185000
 2021,Entry-level,Part-time,Computer Vision Engineer,DK,50,Hybrid,DK,Small,28609
+2021,Mid-level,Full-time,Data Scientist,DE,50,Hybrid,DE,Large,90734
 2021,Mid-level,Full-time,Machine Learning Engineer,BE,100,Remote,BE,Medium,88654
 2021,Senior-level,Full-time,Data Analytics Manager,US,100,Remote,US,Large,140000
 2021,Mid-level,Full-time,Machine Learning Engineer,PL,100,Remote,PL,Large,46597
@@ -248,6 +249,7 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2021,Entry-level,Full-time,Data Scientist,IN,100,Remote,IN,Medium,28399
 2021,Mid-level,Full-time,Data Analyst,US,100,Remote,US,Large,93000
 2021,Senior-level,Full-time,Other,CA,50,Hybrid,CA,Medium,99703
+2021,Mid-level,Full-time,Data Engineer,US,100,Remote,US,Large,200000
 2021,Senior-level,Full-time,Principal Data Scientist,DE,100,Remote,DE,Medium,173762
 2021,Senior-level,Full-time,Machine Learning Engineer,US,50,Hybrid,US,Large,185000
 2021,Executive-level,Full-time,Director of Data Science,DE,0,On-site,DE,Large,141846
@@ -322,6 +324,9 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,170000
 2022,Mid-level,Full-time,Data Analyst,US,100,Remote,US,Medium,115500
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,112900
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,90320
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,112900
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,90320
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,165400
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,132320
 2022,Mid-level,Full-time,Data Analyst,US,100,Remote,US,Medium,167000
@@ -341,6 +346,7 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Science Manager,US,100,Remote,US,Medium,161342
 2022,Senior-level,Full-time,Data Science Manager,US,100,Remote,US,Medium,137141
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,167000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,123000
 2022,Senior-level,Full-time,Data Engineer,GB,0,On-site,GB,Medium,78526
 2022,Senior-level,Full-time,Data Engineer,GB,0,On-site,GB,Medium,65438
 2022,Senior-level,Full-time,Data Scientist,US,0,On-site,US,Medium,150000
@@ -349,17 +355,22 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Architect,CA,100,Remote,CA,Medium,90700
 2022,Senior-level,Full-time,Data Analyst,CA,100,Remote,CA,Medium,130000
 2022,Senior-level,Full-time,Data Analyst,CA,100,Remote,CA,Medium,61300
+2022,Senior-level,Full-time,Data Analyst,CA,100,Remote,CA,Medium,130000
+2022,Senior-level,Full-time,Data Analyst,CA,100,Remote,CA,Medium,61300
 2022,Senior-level,Full-time,Data Engineer,US,0,On-site,US,Large,160000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,138600
 2022,Senior-level,Full-time,Data Engineer,US,0,On-site,US,Medium,136000
 2022,Mid-level,Full-time,Data Analyst,US,0,On-site,US,Small,58000
 2022,Executive-level,Full-time,Other,US,100,Remote,US,Medium,135000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,170000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,123000
 2022,Senior-level,Full-time,Machine Learning Engineer,US,0,On-site,US,Medium,189650
 2022,Senior-level,Full-time,Machine Learning Engineer,US,0,On-site,US,Medium,164996
 2022,Mid-level,Full-time,Other,GR,0,On-site,GR,Medium,54957
+2022,Mid-level,Full-time,Other,GR,0,On-site,GR,Medium,54957
 2022,Executive-level,Full-time,Lead Data Engineer,CA,100,Remote,CA,Small,118187
 2022,Senior-level,Full-time,Data Analyst,US,0,On-site,US,Medium,132000
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,165400
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,208775
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,147800
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,136994
@@ -367,12 +378,15 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,128875
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,93700
 2022,Executive-level,Full-time,Other,IN,50,Hybrid,IN,Large,79039
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,132320
 2022,Entry-level,Full-time,Machine Learning Engineer,GB,100,Remote,GB,Large,37300
 2022,Senior-level,Full-time,Data Analyst,US,0,On-site,US,Medium,164000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,155000
 2022,Mid-level,Full-time,Machine Learning Engineer,GB,0,On-site,GB,Medium,124333
 2022,Mid-level,Full-time,Machine Learning Engineer,GB,0,On-site,GB,Medium,98158
 2022,Mid-level,Full-time,AI Scientist,US,0,On-site,US,Medium,120000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,112900
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,90320
 2022,Senior-level,Full-time,Data Analytics Manager,US,100,Remote,US,Medium,145000
 2022,Senior-level,Full-time,Data Analytics Manager,US,100,Remote,US,Medium,105400
 2022,Mid-level,Full-time,Machine Learning Engineer,FR,100,Remote,DE,Medium,87932
@@ -385,6 +399,7 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Analyst,US,0,On-site,US,Medium,81666
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,175000
 2022,Mid-level,Full-time,Data Engineer,GB,0,On-site,GB,Medium,98158
+2022,Mid-level,Full-time,Data Analyst,US,0,On-site,US,Small,58000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Large,183600
 2022,Mid-level,Full-time,Data Analyst,GB,100,Remote,GB,Medium,52351
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,180000
@@ -416,11 +431,16 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Mid-level,Full-time,Data Engineer,GB,100,Remote,GB,Medium,91614
 2022,Mid-level,Full-time,Data Engineer,ES,100,Remote,ES,Medium,65949
 2022,Mid-level,Full-time,Data Engineer,GR,100,Remote,GR,Medium,87932
+2022,Senior-level,Full-time,Machine Learning Engineer,US,0,On-site,US,Medium,189650
+2022,Senior-level,Full-time,Machine Learning Engineer,US,0,On-site,US,Medium,164996
 2022,Mid-level,Full-time,Data Analyst,GR,100,Remote,GR,Medium,43966
 2022,Mid-level,Full-time,Data Analyst,GR,100,Remote,GR,Medium,32974
 2022,Mid-level,Full-time,Data Engineer,GB,100,Remote,GB,Medium,98158
+2022,Mid-level,Full-time,Data Engineer,GB,100,Remote,GB,Medium,78526
 2022,Senior-level,Full-time,Data Scientist,US,0,On-site,US,Large,215300
 2022,Mid-level,Full-time,Data Engineer,GR,100,Remote,GR,Medium,76940
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Large,209100
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Large,154600
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,180000
 2022,Entry-level,Full-time,ML Engineer,PT,100,Remote,PT,Large,21983
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,80000
@@ -446,6 +466,7 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Mid-level,Full-time,Data Analyst,US,100,Remote,US,Medium,135000
 2022,Mid-level,Full-time,Data Analyst,US,100,Remote,US,Medium,50000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,220000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,140000
 2022,Mid-level,Full-time,Data Scientist,GB,0,On-site,GB,Medium,183228
 2022,Mid-level,Full-time,Data Scientist,GB,0,On-site,GB,Medium,91614
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,185100
@@ -498,13 +519,17 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Mid-level,Full-time,Data Scientist,US,100,Remote,US,Large,135000
 2022,Senior-level,Full-time,Applied Data Scientist,US,100,Remote,US,Large,177000
 2022,Mid-level,Full-time,Data Scientist,US,100,Remote,US,Medium,78000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,135000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,100000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,90320
 2022,Mid-level,Full-time,Data Analyst,CA,0,On-site,CA,Medium,85000
 2022,Mid-level,Full-time,Data Analyst,CA,0,On-site,CA,Medium,75000
 2022,Senior-level,Full-time,Machine Learning Engineer,US,100,Remote,US,Medium,214000
 2022,Senior-level,Full-time,Machine Learning Engineer,US,100,Remote,US,Medium,192600
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,266400
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,213120
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,112900
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,155000
 2022,Mid-level,Full-time,Data Scientist,US,0,On-site,US,Medium,141300
 2022,Mid-level,Full-time,Data Scientist,US,0,On-site,US,Medium,102100
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,115934
@@ -512,13 +537,17 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Mid-level,Full-time,Data Engineer,US,0,On-site,US,Medium,206699
 2022,Mid-level,Full-time,Data Engineer,US,0,On-site,US,Medium,99100
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,130000
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,115000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,110500
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,130000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,99050
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,160000
 2022,Senior-level,Full-time,Data Scientist,US,0,On-site,US,Large,205300
+2022,Senior-level,Full-time,Data Scientist,US,0,On-site,US,Large,140400
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,176000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,144000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,200100
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,160000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,145000
 2022,Senior-level,Full-time,Data Engineer,US,0,On-site,US,Medium,70500
 2022,Senior-level,Full-time,Data Scientist,US,0,On-site,US,Medium,205300
@@ -529,11 +558,19 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,140250
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,116150
 2022,Senior-level,Full-time,Data Engineer,US,0,On-site,US,Medium,54000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,170000
 2022,Mid-level,Full-time,Data Analyst,GB,0,On-site,GB,Medium,65438
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,80000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,140000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,210000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,140000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,100000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,69000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,210000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,140000
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,210000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,150075
+2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,100000
 2022,Senior-level,Full-time,Data Engineer,US,100,Remote,US,Medium,25000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,126500
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,106260
@@ -542,12 +579,17 @@ work_year,experience_level,employment_type,job_title,employee_residence,remote_r
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,105000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,110925
 2022,Mid-level,Full-time,Data Analyst,GB,0,On-site,GB,Medium,45807
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,140000
+2022,Senior-level,Full-time,Data Analyst,US,0,On-site,US,Medium,99000
 2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,60000
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,192564
 2022,Senior-level,Full-time,Data Architect,US,100,Remote,US,Medium,144854
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,230000
 2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,150000
 2022,Senior-level,Full-time,Data Analytics Manager,US,100,Remote,US,Medium,150260
 2022,Senior-level,Full-time,Data Analytics Manager,US,100,Remote,US,Medium,109280
+2022,Senior-level,Full-time,Data Scientist,US,100,Remote,US,Medium,210000
+2022,Senior-level,Full-time,Data Analyst,US,100,Remote,US,Medium,170000
 2022,Mid-level,Full-time,Data Scientist,US,100,Remote,US,Medium,160000
 2022,Mid-level,Full-time,Data Scientist,US,100,Remote,US,Medium,130000
 2022,Entry-level,Full-time,Data Analyst,CA,0,On-site,CA,Medium,67000
