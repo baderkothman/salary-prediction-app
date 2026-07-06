@@ -1,5 +1,6 @@
 {
-    "model_name": "DecisionTreeRegressor",
+    "model_name": "RandomForestRegressor",
+    "candidate": "RandomForestRegressor | raw target",
     "target": "salary_in_usd",
     "features": [
         "work_year",
@@ -11,16 +12,67 @@
         "company_location",
         "company_size"
     ],
-    "best_params": {
-        "model__max_depth": 7,
-        "model__max_features": null,
-        "model__min_samples_leaf": 2,
-        "model__min_samples_split": 5
-    },
-    "mae": 32331.409475064236,
-    "rmse": 52882.318774747226,
-    "r2": 0.4178561947561016,
-    "baseline_mae": 50958.95575221239,
-    "baseline_rmse": 69822.64785502428,
-    "baseline_r2": -0.014850171759041242
+    "target_transform": "none",
+    "mae": 24817.84344509897,
+    "rmse": 33966.23098234126,
+    "r2": 0.6728722574803161,
+    "baseline_strategy": "median_training_salary",
+    "baseline_salary": 100000.0,
+    "baseline_mae": 49323.919642857145,
+    "baseline_rmse": 59810.1395961331,
+    "baseline_r2": -0.014313700157837506,
+    "test_size": 0.2,
+    "random_state": 42,
+    "salary_outlier_method": "Removed salary_in_usd values above the 99th percentile in cleaning notebook",
+    "rare_job_title_threshold": 5,
+    "model_comparison": [
+        {
+            "candidate": "RandomForestRegressor | raw target",
+            "model_name": "RandomForestRegressor",
+            "target_transform": "none",
+            "mae": 24817.84344509897,
+            "rmse": 33966.23098234126,
+            "r2": 0.6728722574803161
+        },
+        {
+            "candidate": "GradientBoostingRegressor | raw target",
+            "model_name": "GradientBoostingRegressor",
+            "target_transform": "none",
+            "mae": 24851.361063048193,
+            "rmse": 33410.29285851043,
+            "r2": 0.6834930693749783
+        },
+        {
+            "candidate": "DecisionTreeRegressor | raw target",
+            "model_name": "DecisionTreeRegressor",
+            "target_transform": "none",
+            "mae": 25939.47292209377,
+            "rmse": 35717.391817075506,
+            "r2": 0.6382719931889769
+        },
+        {
+            "candidate": "RandomForestRegressor | log target",
+            "model_name": "RandomForestRegressor",
+            "target_transform": "log1p/expm1",
+            "mae": 26243.234836778895,
+            "rmse": 35483.00751591324,
+            "r2": 0.6430038719472926
+        },
+        {
+            "candidate": "GradientBoostingRegressor | log target",
+            "model_name": "GradientBoostingRegressor",
+            "target_transform": "log1p/expm1",
+            "mae": 26536.2683263708,
+            "rmse": 37687.1844792256,
+            "r2": 0.5972736495920226
+        },
+        {
+            "candidate": "DecisionTreeRegressor | log target",
+            "model_name": "DecisionTreeRegressor",
+            "target_transform": "log1p/expm1",
+            "mae": 29851.840884110858,
+            "rmse": 39401.82736659776,
+            "r2": 0.5597945783337092
+        }
+    ]
 }

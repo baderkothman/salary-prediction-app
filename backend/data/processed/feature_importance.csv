@@ -1,153 +1,131 @@
 feature,importance
-employee_residence_US,0.4916831661596836
-experience_level_Executive-level,0.11065668763466373
-work_year,0.05994468232782578
-job_title_Data Analyst,0.04806175528171209
-experience_level_Senior-level,0.04354143499139529
-experience_level_Mid-level,0.031199654428254547
-job_title_Financial Data Analyst,0.027308731557278337
-experience_level_Entry-level,0.023158696348848155
-job_title_Director of Data Science,0.022953470893825673
-job_title_Data Engineer,0.021574387358049295
-company_location_JP,0.018842746457098818
-job_title_Applied Data Scientist,0.01585433793948196
-job_title_Head of Data,0.015430240574515345
-company_location_IN,0.010358674222558428
-job_title_Data Scientist,0.008131535446013307
-company_location_AU,0.007621441501283588
-remote_ratio,0.0057711760026435905
-job_title_Data Science Manager,0.005700236967389262
-job_title_Machine Learning Engineer,0.005075733583281026
-company_location_BR,0.004639810298738518
-company_size_Large,0.00436025728160581
-company_size_Small,0.004304454763491177
-employment_type_Freelance,0.003839262701420556
-employee_residence_TR,0.003474462676496423
-employee_residence_IN,0.0031975490380047058
-job_title_Head of Data Science,0.002376331564770681
-company_location_DE,0.0009390819996703055
-job_title_Data Architect,0.0
-job_title_Computer Vision Software Engineer,0.0
-job_title_Computer Vision Engineer,0.0
-job_title_Cloud Data Engineer,0.0
-job_title_Business Data Analyst,0.0
-job_title_Applied Machine Learning Scientist,0.0
-job_title_Big Data Engineer,0.0
-job_title_Big Data Architect,0.0
-job_title_BI Data Analyst,0.0
-job_title_AI Scientist,0.0
-job_title_Analytics Engineer,0.0
-employment_type_Full-time,0.0
-employment_type_Part-time,0.0
-employment_type_Contract,0.0
-job_title_Data Analytics Manager,0.0
-job_title_Data Analytics Lead,0.0
-job_title_Data Analytics Engineer,0.0
-job_title_Machine Learning Infrastructure Engineer,0.0
-job_title_Lead Machine Learning Engineer,0.0
-job_title_ML Engineer,0.0
-job_title_Machine Learning Developer,0.0
-job_title_Lead Data Scientist,0.0
-job_title_Director of Data Engineering,0.0
-job_title_Data Science Consultant,0.0
-job_title_Data Engineering Manager,0.0
-job_title_Head of Machine Learning,0.0
-job_title_Lead Data Analyst,0.0
-job_title_Lead Data Engineer,0.0
-job_title_Finance Data Analyst,0.0
-employee_residence_AT,0.0
-employee_residence_AU,0.0
-employee_residence_BG,0.0
-employee_residence_BE,0.0
-employee_residence_BR,0.0
-employee_residence_CA,0.0
-employee_residence_CH,0.0
-employee_residence_BO,0.0
-employee_residence_CO,0.0
-employee_residence_CZ,0.0
-employee_residence_DE,0.0
-employee_residence_DK,0.0
-employee_residence_DZ,0.0
-employee_residence_EE,0.0
-employee_residence_ES,0.0
-employee_residence_CN,0.0
-employee_residence_FR,0.0
-employee_residence_GB,0.0
-employee_residence_HK,0.0
-employee_residence_GR,0.0
-employee_residence_HN,0.0
-job_title_Machine Learning Manager,0.0
-job_title_Machine Learning Scientist,0.0
-job_title_NLP Engineer,0.0
-job_title_Principal Data Analyst,0.0
-job_title_Principal Data Engineer,0.0
-job_title_Principal Data Scientist,0.0
-job_title_Product Data Analyst,0.0
-job_title_Research Scientist,0.0
-job_title_Staff Data Scientist,0.0
-employee_residence_AE,0.0
-job_title_Data Science Engineer,0.0
-employee_residence_MY,0.0
-employee_residence_MX,0.0
-employee_residence_MT,0.0
-employee_residence_LU,0.0
-employee_residence_KE,0.0
-employee_residence_JP,0.0
-employee_residence_JE,0.0
-employee_residence_IT,0.0
-employee_residence_IQ,0.0
-employee_residence_HU,0.0
-employee_residence_HR,0.0
-employee_residence_RO,0.0
-employee_residence_RS,0.0
-employee_residence_PL,0.0
-employee_residence_NG,0.0
-employee_residence_NL,0.0
-company_location_AE,0.0
-employee_residence_VN,0.0
-employee_residence_SI,0.0
-company_location_AT,0.0
-company_location_BE,0.0
-company_location_CA,0.0
-company_location_CH,0.0
-company_location_AS,0.0
-company_location_CN,0.0
-company_location_CO,0.0
-employee_residence_RU,0.0
-employee_residence_SG,0.0
-employee_residence_TN,0.0
-employee_residence_PT,0.0
-employee_residence_PH,0.0
-employee_residence_PK,0.0
-company_location_FR,0.0
-company_location_ES,0.0
-company_location_EE,0.0
-company_location_DZ,0.0
-company_location_DK,0.0
-company_location_CZ,0.0
-company_location_HN,0.0
-company_location_GB,0.0
-company_location_IQ,0.0
-company_location_IT,0.0
-company_location_KE,0.0
-company_location_LU,0.0
-company_location_HR,0.0
-company_location_HU,0.0
-company_location_IL,0.0
-company_location_GR,0.0
-company_location_NG,0.0
-company_location_MY,0.0
-company_location_MX,0.0
-company_location_MT,0.0
-company_location_NL,0.0
-company_location_PK,0.0
-company_location_PL,0.0
-company_location_PT,0.0
-company_location_SI,0.0
-company_location_SG,0.0
-company_location_RU,0.0
-company_location_RO,0.0
-company_location_VN,0.0
-company_location_US,0.0
-company_location_TR,0.0
-company_size_Medium,0.0
+categorical__employee_residence_US,0.42869772794717825
+categorical__job_title_Data Analyst,0.05877293590492201
+categorical__experience_level_Executive-level,0.058177815884667555
+categorical__experience_level_Senior-level,0.05457380367995499
+categorical__experience_level_Entry-level,0.04086698103648872
+numeric__remote_ratio,0.030206639789298002
+numeric__work_year,0.02970157231223962
+categorical__experience_level_Mid-level,0.025219333790930987
+categorical__job_title_Data Engineer,0.02191166408171081
+categorical__job_title_Other,0.020037969556934352
+categorical__job_title_Data Scientist,0.015449495921027854
+categorical__job_title_Applied Data Scientist,0.014531013980779592
+categorical__company_size_Medium,0.013310390150564002
+categorical__company_size_Large,0.012762163006489169
+categorical__job_title_Principal Data Scientist,0.011359101607494756
+categorical__job_title_Machine Learning Engineer,0.011069035525250676
+categorical__job_title_Head of Data,0.010387525916002841
+categorical__employee_residence_CA,0.01011561959689505
+categorical__company_location_US,0.009975815235357954
+categorical__job_title_Director of Data Science,0.00992699916924506
+categorical__company_location_GB,0.00956159384588962
+categorical__company_location_JP,0.00933985812892872
+categorical__job_title_Data Science Manager,0.00852736433777369
+categorical__company_location_IN,0.008162573947515978
+categorical__job_title_Data Architect,0.00703866141533938
+categorical__job_title_Machine Learning Scientist,0.006371829137237066
+categorical__employee_residence_IN,0.006367442675583998
+categorical__job_title_Data Analytics Manager,0.005858108943505891
+categorical__employee_residence_JP,0.005209622622359449
+categorical__company_size_Small,0.0051835856289032456
+categorical__employee_residence_GB,0.004450175830424609
+categorical__employee_residence_DE,0.00344360841317252
+categorical__employment_type_Full-time,0.003107419102924694
+categorical__job_title_Research Scientist,0.0030201397908404762
+categorical__company_location_CA,0.0024677931983747192
+categorical__employee_residence_SG,0.002247685662241307
+categorical__company_location_AU,0.002055179378766174
+categorical__job_title_AI Scientist,0.0020290265683440335
+categorical__company_location_DE,0.0018396376955608369
+categorical__employee_residence_AU,0.0018194034571690882
+categorical__job_title_Computer Vision Engineer,0.0017722544439081548
+categorical__company_location_BR,0.0014639575535905654
+categorical__employee_residence_BR,0.0011362010119270731
+categorical__company_location_ES,0.0010798421910281199
+categorical__employee_residence_ES,0.0009508630749601863
+categorical__company_location_RU,0.0007944686312287942
+categorical__employee_residence_TR,0.0006994413025797445
+categorical__job_title_Data Engineering Manager,0.0006854126692043244
+categorical__company_location_PK,0.0006322102934868687
+categorical__company_location_TR,0.0006217948007251244
+categorical__employment_type_Part-time,0.0006037525161505506
+categorical__employee_residence_PT,0.0005739022328915485
+categorical__employee_residence_PK,0.0004784568670535432
+categorical__job_title_BI Data Analyst,0.00034721052608200227
+categorical__job_title_Data Science Consultant,0.00033623682177522817
+categorical__company_location_FR,0.0003009225839833785
+categorical__employee_residence_GR,0.00029605152940932034
+categorical__employee_residence_FR,0.0002930434182790558
+categorical__company_location_GR,0.00023787679922650896
+categorical__job_title_ML Engineer,0.00021976610401321927
+categorical__employment_type_Freelance,0.0002093286825585502
+categorical__employee_residence_RU,0.00018668318264176905
+categorical__company_location_BE,0.0001366933946007852
+categorical__company_location_AT,0.00012511799891488777
+categorical__employee_residence_HU,0.00011932899794612428
+categorical__employee_residence_VN,8.120758735915824e-05
+categorical__company_location_CN,6.092366009202106e-05
+categorical__company_location_DK,5.4470827165091215e-05
+categorical__company_location_PL,4.060958272951957e-05
+categorical__employee_residence_DK,3.8917135904497766e-05
+categorical__employee_residence_AT,3.7516712795754846e-05
+categorical__job_title_Business Data Analyst,3.5328338886738487e-05
+categorical__company_location_PT,3.511029007626347e-05
+categorical__employee_residence_BE,2.9975950896306726e-05
+categorical__company_location_AE,2.7894507567610694e-05
+categorical__company_location_NG,2.480655831041481e-05
+categorical__employee_residence_PL,2.056724502989864e-05
+categorical__employee_residence_AE,1.7951149377414485e-05
+categorical__company_location_NL,1.1723073529613526e-05
+categorical__employee_residence_NL,1.117441800853991e-05
+categorical__company_location_LU,9.213415591688906e-06
+categorical__employee_residence_SI,5.2070440078555545e-06
+categorical__employee_residence_IT,2.2710002184995005e-06
+categorical__employee_residence_CH,0.0
+categorical__employee_residence_CL,0.0
+categorical__job_title_Lead Data Engineer,0.0
+categorical__job_title_Big Data Engineer,0.0
+categorical__employment_type_Contract,0.0
+categorical__employee_residence_CN,0.0
+categorical__employee_residence_IR,0.0
+categorical__employee_residence_HK,0.0
+categorical__employee_residence_HR,0.0
+categorical__employee_residence_HN,0.0
+categorical__employee_residence_BO,0.0
+categorical__employee_residence_BG,0.0
+categorical__employee_residence_CZ,0.0
+categorical__employee_residence_CO,0.0
+categorical__employee_residence_EE,0.0
+categorical__employee_residence_MY,0.0
+categorical__employee_residence_MX,0.0
+categorical__employee_residence_MD,0.0
+categorical__employee_residence_LU,0.0
+categorical__employee_residence_KE,0.0
+categorical__employee_residence_JE,0.0
+categorical__employee_residence_IQ,0.0
+categorical__company_location_CO,0.0
+categorical__employee_residence_RS,0.0
+categorical__employee_residence_NG,0.0
+categorical__company_location_CZ,0.0
+categorical__company_location_CL,0.0
+categorical__company_location_CH,0.0
+categorical__employee_residence_RO,0.0
+categorical__employee_residence_TN,0.0
+categorical__employee_residence_UA,0.0
+categorical__company_location_EE,0.0
+categorical__company_location_MY,0.0
+categorical__company_location_MD,0.0
+categorical__company_location_MX,0.0
+categorical__company_location_IT,0.0
+categorical__company_location_IL,0.0
+categorical__company_location_IQ,0.0
+categorical__company_location_IR,0.0
+categorical__company_location_HN,0.0
+categorical__company_location_HR,0.0
+categorical__company_location_HU,0.0
+categorical__company_location_KE,0.0
+categorical__company_location_SI,0.0
+categorical__company_location_SG,0.0
+categorical__company_location_VN,0.0
+categorical__company_location_UA,0.0

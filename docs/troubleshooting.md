@@ -12,7 +12,7 @@
 | --------------------------------- | ------------------------------------------------------------- |
 | Python dependencies missing       | Run `pip install -r backend\requirements.txt`.                        |
 | Virtual environment not activated | Run `.\.venv\Scripts\Activate.ps1` on Windows PowerShell.     |
-| Model artifact missing            | Confirm `backend/models/salary_decision_tree_pipeline.joblib` exists. |
+| Model artifact missing            | Confirm `backend/models/salary_best_model_pipeline.joblib` exists. |
 | Cleaned dataset missing           | Confirm `backend/data/processed/cleaned_salaries.csv` exists.         |
 | Invalid working directory         | Run commands from repository root.                            |
 

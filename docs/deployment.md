@@ -29,7 +29,7 @@ flowchart LR
 The backend deployment must include:
 
 - `backend/api/`
-- `backend/models/salary_decision_tree_pipeline.joblib`
+- `backend/models/salary_best_model_pipeline.joblib`
 - `backend/data/processed/cleaned_salaries.csv`
 - `backend/api/allowed_values.json`
 - `backend/requirements.txt`

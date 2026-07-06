@@ -14,7 +14,7 @@ from .supabase_service import save_prediction_result, get_prediction_history
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MODEL_PATH = BASE_DIR / "models" / "salary_decision_tree_pipeline.joblib"
+MODEL_PATH = BASE_DIR / "models" / "salary_best_model_pipeline.joblib"
 ALLOWED_VALUES_PATH = BASE_DIR / "api" / "allowed_values.json"
 DATA_PATH = BASE_DIR / "data" / "processed" / "cleaned_salaries.csv"
 
@@ -27,7 +27,7 @@ CHARTS_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(
     title="Salary Prediction API",
-    description="GET API for predicting data science salaries using a trained Decision Tree model.",
+    description="GET API for predicting data science salaries using the best trained regression model.",
     version="1.0.0",
 )
 

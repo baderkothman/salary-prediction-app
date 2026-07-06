@@ -85,7 +85,7 @@ flowchart TD
     Raw[backend/data/raw/ds_salaries.csv] --> Cleaning[notebooks/01_data_cleaning.ipynb]
     Cleaning --> Cleaned[backend/data/processed/cleaned_salaries.csv]
     Cleaned --> Training[notebooks/02_model_training.ipynb]
-    Training --> Model[backend/models/salary_decision_tree_pipeline.joblib]
+    Training --> Model[backend/models/salary_best_model_pipeline.joblib]
     Training --> Metrics[backend/models/model_metrics.json]
     Training --> Schema[backend/models/input_schema.json]
     Training --> Importance[backend/data/processed/feature_importance.csv]
@@ -113,7 +113,7 @@ flowchart TD
 | `backend/data/raw/ds_salaries.csv`                    | Original salary dataset.                                               |
 | `backend/data/processed/cleaned_salaries.csv`         | Cleaned model-ready dataset.                                           |
 | `backend/data/processed/feature_importance.csv`       | Feature importance report from trained decision tree.                  |
-| `backend/models/salary_decision_tree_pipeline.joblib` | Saved preprocessing and regression pipeline.                           |
+| `backend/models/salary_best_model_pipeline.joblib`    | Saved preprocessing and best selected regression pipeline.              |
 | `backend/models/model_metrics.json`                   | Model metrics and selected hyperparameters.                            |
 | `backend/models/input_schema.json`                    | Expected model input schema.                                           |
 | `notebooks/01_data_cleaning.ipynb`            | Raw-to-cleaned data preparation notebook.                              |

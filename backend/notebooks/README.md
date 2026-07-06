@@ -26,12 +26,14 @@ Main steps:
 - Remove missing values and duplicates.
 - Clean categorical and numeric fields.
 - Expand coded values such as experience level, employment type, and company size.
+- Remove extreme `salary_in_usd` outliers above the 99th percentile.
+- Group rare job titles into `Other`.
 - Add a readable work-setting label from `remote_ratio`.
 - Select the final columns used for model training.
 
 ## `02_model_training.ipynb`
 
-Purpose: train, tune, evaluate, and save a salary prediction model.
+Purpose: train, compare, evaluate, and save the best salary prediction model.
 
 Input:
 
@@ -39,10 +41,11 @@ Input:
 
 Outputs:
 
-- `../models/salary_decision_tree_pipeline.joblib`
+- `../models/salary_best_model_pipeline.joblib`
 - `../models/model_metrics.json`
 - `../models/input_schema.json`
 - `../data/processed/feature_importance.csv`
+- `../api/allowed_values.json`
 
 Main steps:
 
@@ -50,8 +53,9 @@ Main steps:
 - Select prediction features and the `salary_in_usd` target.
 - Split the data into training and test sets.
 - Build a preprocessing pipeline for categorical and numeric features.
-- Train and tune a `DecisionTreeRegressor`.
-- Compare the tuned model against a median-salary baseline.
+- Train and compare `DecisionTreeRegressor`, `RandomForestRegressor`, and `GradientBoostingRegressor`.
+- Test both raw salary targets and a `log1p` target transformation.
+- Compare each candidate against a median-salary baseline.
 - Save the model, metrics, input schema, and feature importance table.
 
 ## Notes

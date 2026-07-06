@@ -14,7 +14,7 @@ The project does not implement RAG, embeddings, vector search, agents, tool-call
 | File                                  | Rows | Purpose                                                   |
 | ------------------------------------- | ---: | --------------------------------------------------------- |
 | `backend/data/raw/ds_salaries.csv`            |  607 | Original salary dataset.                                  |
-| `backend/data/processed/cleaned_salaries.csv` |  565 | Cleaned dataset used by training and API benchmark logic. |
+| `backend/data/processed/cleaned_salaries.csv` |  558 | Cleaned dataset used by training and API benchmark logic. |
 
 Raw columns include compact category codes such as `MI`, `SE`, `FT`, and `M`. The cleaning notebook expands these into readable labels.
 
@@ -35,8 +35,10 @@ Main steps:
    - Company size: `S`, `M`, `L` to readable sizes.
 7. Coerce numeric fields.
 8. Remove invalid non-positive salary rows.
-9. Add readable `work_setting` from `remote_ratio`.
-10. Save `backend/data/processed/cleaned_salaries.csv`.
+9. Remove extreme `salary_in_usd` outliers above the 99th percentile.
+10. Group rare `job_title` values into `Other`.
+11. Add readable `work_setting` from `remote_ratio`.
+12. Save `backend/data/processed/cleaned_salaries.csv`.
 
 ## Model Training Workflow
 
@@ -48,35 +50,32 @@ flowchart TD
     B --> C[Train/test split, random_state=42]
     C --> D[One-hot encode categorical features]
     D --> E[Pass through numeric features]
-    E --> F[Train DecisionTreeRegressor]
-    F --> G[GridSearchCV, 5 folds, MAE scoring]
-    G --> H[Evaluate tuned model]
+    E --> F[Train Decision Tree, Random Forest, Gradient Boosting]
+    F --> G[Test raw target and log1p target]
+    G --> H[Evaluate each candidate]
     H --> I[Compare to median baseline]
-    I --> J[Save model, metrics, schema, feature importance]
+    I --> J[Save best model, metrics, schema, feature importance]
 ```
 
 ## Model Type
 
-The saved model is a scikit-learn `Pipeline`:
+The saved model is the best selected scikit-learn regression pipeline:
 
 ```text
 Pipeline
 +-- preprocessor: ColumnTransformer
 |   +-- categorical: OneHotEncoder(handle_unknown="ignore")
 |   +-- numeric: passthrough
-+-- model: DecisionTreeRegressor(random_state=42)
++-- model: RandomForestRegressor(random_state=42)
 ```
 
-The tuned model parameters are:
+The training notebook compares these candidates:
 
-```json
-{
-  "model__max_depth": 7,
-  "model__max_features": null,
-  "model__min_samples_leaf": 2,
-  "model__min_samples_split": 5
-}
-```
+- `DecisionTreeRegressor`
+- `RandomForestRegressor`
+- `GradientBoostingRegressor`
+
+Each candidate is tested with the raw salary target and with a `log1p` target transformation. The current selected model is `RandomForestRegressor | raw target`.
 
 ## Features and Target
 
@@ -94,32 +93,21 @@ The tuned model parameters are:
 
 `work_setting` is kept in the cleaned dataset for readability but excluded from training because it duplicates information already present in `remote_ratio`.
 
-## Hyperparameter Search
+## Model Comparison
 
-The training notebook uses `GridSearchCV` with 5-fold cross-validation and `neg_mean_absolute_error` scoring.
-
-Search space:
-
-```python
-{
-    "model__max_depth": [3, 5, 7, 10, 15, None],
-    "model__min_samples_split": [2, 5, 10, 20],
-    "model__min_samples_leaf": [1, 2, 5, 10],
-    "model__max_features": [None, "sqrt", "log2"],
-}
-```
+The training notebook compares all candidates on the same held-out test split and chooses the best model mainly by MAE, with R2 used as a secondary check. The test set is not used during fitting.
 
 ## Evaluation Metrics
 
 From `backend/models/model_metrics.json`:
 
-| Metric | Tuned Model | Median Baseline |
+| Metric | Best Model | Median Baseline |
 | ------ | ----------: | --------------: |
-| MAE    |   32,331.41 |       50,958.96 |
-| RMSE   |   52,882.32 |       69,822.65 |
-| R2     |      0.4179 |         -0.0149 |
+| MAE    |   24,817.84 |       49,323.92 |
+| RMSE   |   33,966.23 |       59,810.14 |
+| R2     |      0.6729 |         -0.0143 |
 
-The model outperforms the simple median-salary baseline, but its R2 indicates moderate predictive strength rather than high-confidence salary forecasting.
+The selected model clearly outperforms the simple median-salary baseline. Its R2 is stronger than the earlier Decision Tree-only result, but the prediction is still decision support rather than a final compensation authority.
 
 ## Feature Importance
 
@@ -134,7 +122,7 @@ flowchart TD
     A[Request query parameters] --> B[Validate values against allowed_values.json]
     B --> C[Build one-row pandas DataFrame]
     C --> D[scikit-learn pipeline preprocessing]
-    D --> E[DecisionTreeRegressor prediction]
+    D --> E[Best regression model prediction]
     E --> F[Round predicted salary to 2 decimals]
     F --> G[Return JSON response]
 ```
@@ -198,9 +186,9 @@ If Ollama is unavailable, times out, or returns an error, `/analyze` still retur
 
 ## Model Limitations
 
-- The dataset is small: 565 cleaned rows.
+- The dataset is small: 558 cleaned rows.
 - Valid API inputs are limited to categories observed in the cleaned dataset.
-- The model is a decision tree, which can overfit and may generalize poorly outside training-like records.
+- The selected model is still trained on a small historical dataset and may generalize poorly outside training-like records.
 - Salaries are historical and may not represent current market rates.
 - The model predicts point estimates only; it does not provide confidence intervals.
 - Location and role categories may be sparse.

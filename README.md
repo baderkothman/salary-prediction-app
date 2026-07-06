@@ -16,7 +16,7 @@ Salary expectations vary by job title, experience level, geography, company size
 
 ## Main Features
 
-- Predicts data science salaries with a trained `DecisionTreeRegressor`.
+- Predicts data science salaries with the best selected scikit-learn regression pipeline.
 - Validates API inputs against values observed in the processed training dataset.
 - Provides dataset benchmark averages for overall salary, experience level, company size, and job title.
 - Generates salary comparison charts as static PNG files.
@@ -29,7 +29,7 @@ Salary expectations vary by job title, experience level, geography, company size
 | Layer | Technology |
 | --- | --- |
 | Backend API | FastAPI, Uvicorn |
-| ML model | scikit-learn `Pipeline`, `ColumnTransformer`, `OneHotEncoder`, `DecisionTreeRegressor` |
+| ML model | scikit-learn `Pipeline`, `ColumnTransformer`, `OneHotEncoder`, `RandomForestRegressor` |
 | Data processing | pandas, NumPy, Jupyter notebooks |
 | Visualization | matplotlib, Recharts |
 | LLM analysis | Ollama local API, model `llama3.2` |
@@ -161,16 +161,16 @@ Invoke-RestMethod "http://127.0.0.1:8000/predict?work_year=2022&experience_level
 
 | Item | Value |
 | --- | --- |
-| Model | `DecisionTreeRegressor` |
+| Model | `RandomForestRegressor` |
 | Target | `salary_in_usd` |
 | Rows in raw dataset | 607 |
-| Rows in cleaned dataset | 565 |
+| Rows in cleaned dataset | 558 |
 | Evaluation split | 80 percent train, 20 percent test |
-| Cross-validation | 5-fold `GridSearchCV` |
-| MAE | 32,331.41 USD |
-| RMSE | 52,882.32 USD |
-| R2 | 0.4179 |
-| Baseline MAE | 50,958.96 USD |
+| Model comparison | Decision Tree, Random Forest, Gradient Boosting, with and without log target |
+| MAE | 24,817.84 USD |
+| RMSE | 33,966.23 USD |
+| R2 | 0.6729 |
+| Baseline MAE | 49,323.92 USD |
 
 ## Testing
 
